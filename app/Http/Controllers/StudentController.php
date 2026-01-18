@@ -66,7 +66,15 @@ class StudentController extends Controller
             'graduation_year' => 'required|integer',
             'jalur_pendaftaran' => 'required|string',
             'father_name' => 'required|string|max:255',
+            'father_nik' => 'required|string|max:20',
+            'father_job' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
+            'mother_nik' => 'required|string|max:20',
+            'mother_job' => 'required|string|max:255',
+            'foto' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'kk' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
+            'akta' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
+            'ijazah' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
         // Create User
@@ -99,9 +107,32 @@ class StudentController extends Controller
         // Create Parent
         $student->parents()->create([
             'father_name' => $request->father_name,
+            'father_nik' => $request->father_nik,
+            'father_job' => $request->father_job,
+            'father_phone' => $request->father_phone,
             'mother_name' => $request->mother_name,
+            'mother_nik' => $request->mother_nik,
+            'mother_job' => $request->mother_job,
+            'mother_phone' => $request->mother_phone,
             'guardian_name' => $request->guardian_name,
         ]);
+
+        // Handle File Uploads
+        $fileTypes = ['foto', 'kk', 'akta', 'ijazah'];
+        foreach ($fileTypes as $type) {
+            if ($request->hasFile($type)) {
+                $file = $request->file($type);
+                $originalName = $file->getClientOriginalName();
+                $filename = time() . '_' . $type . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('uploads/' . $student->id, $filename, 'public');
+
+                $student->files()->create([
+                    'file_type' => $type,
+                    'file_path' => $path,
+                    'original_name' => $originalName,
+                ]);
+            }
+        }
 
         return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -149,7 +180,15 @@ class StudentController extends Controller
             'graduation_year' => 'required|integer',
             'jalur_pendaftaran' => 'required|string',
             'father_name' => 'required|string|max:255',
+            'father_nik' => 'required|string|max:20',
+            'father_job' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
+            'mother_nik' => 'required|string|max:20',
+            'mother_job' => 'required|string|max:255',
+            'foto' => 'nullable|mimes:jpg,jpeg,png|max:2048',
+            'kk' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
+            'akta' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
+            'ijazah' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
         // Update Student
@@ -179,10 +218,35 @@ class StudentController extends Controller
             ['student_id' => $student->id],
             [
                 'father_name' => $request->father_name,
+                'father_nik' => $request->father_nik,
+                'father_job' => $request->father_job,
+                'father_phone' => $request->father_phone,
                 'mother_name' => $request->mother_name,
+                'mother_nik' => $request->mother_nik,
+                'mother_job' => $request->mother_job,
+                'mother_phone' => $request->mother_phone,
                 'guardian_name' => $request->guardian_name,
             ]
         );
+
+        // Handle File Uploads
+        $fileTypes = ['foto', 'kk', 'akta', 'ijazah'];
+        foreach ($fileTypes as $type) {
+            if ($request->hasFile($type)) {
+                $file = $request->file($type);
+                $originalName = $file->getClientOriginalName();
+                $filename = time() . '_' . $type . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('uploads/' . $student->id, $filename, 'public');
+
+                $student->files()->updateOrCreate(
+                    ['file_type' => $type],
+                    [
+                        'file_path' => $path,
+                        'original_name' => $originalName,
+                    ]
+                );
+            }
+        }
 
         return redirect()->route('students.index')->with('success', 'Data siswa berhasil diperbarui.');
     }

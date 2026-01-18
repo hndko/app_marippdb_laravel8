@@ -23,7 +23,7 @@
                 <h4 class="card-title mb-0 flex-grow-1">Formulir Data Siswa</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('students.store') }}" method="POST">
+                <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
@@ -125,23 +125,87 @@
                             <hr>
                         </div>
 
-                        <div class="col-xxl-4 col-md-6">
+                        <!-- Ayah -->
+                        <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_name" class="form-label">Nama Ayah</label>
                                 <input type="text" class="form-control" id="father_name" name="father_name" required>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="father_nik" class="form-label">NIK Ayah</label>
+                                <input type="text" class="form-control" id="father_nik" name="father_nik" required>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="father_job" class="form-label">Pekerjaan Ayah</label>
+                                <input type="text" class="form-control" id="father_job" name="father_job" required>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="father_phone" class="form-label">No. HP Ayah</label>
+                                <input type="text" class="form-control" id="father_phone" name="father_phone">
+                            </div>
+                        </div>
+
+                        <!-- Ibu -->
+                        <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_name" class="form-label">Nama Ibu</label>
                                 <input type="text" class="form-control" id="mother_name" name="mother_name" required>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="mother_nik" class="form-label">NIK Ibu</label>
+                                <input type="text" class="form-control" id="mother_nik" name="mother_nik" required>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="mother_job" class="form-label">Pekerjaan Ibu</label>
+                                <input type="text" class="form-control" id="mother_job" name="mother_job" required>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="mother_phone" class="form-label">No. HP Ibu</label>
+                                <input type="text" class="form-control" id="mother_phone" name="mother_phone">
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="guardian_name" class="form-label">Nama Wali (Opsional)</label>
                                 <input type="text" class="form-control" id="guardian_name" name="guardian_name">
                             </div>
+                        </div>
+
+                        <!-- Upload Berkas -->
+                        <div class="col-lg-12 mt-4">
+                            <h5 class="fw-bold text-primary">Upload Berkas Dokumen</h5>
+                            <p class="text-muted">Format: JPG, PNG, PDF. Maks: 2MB.</p>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="foto" class="form-label">Pas Foto (Format: JPG/PNG)</label>
+                            <input class="form-control" type="file" id="foto" name="foto">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="kk" class="form-label">Kartu Keluarga (KK)</label>
+                            <input class="form-control" type="file" id="kk" name="kk">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="akta" class="form-label">Akta Kelahiran</label>
+                            <input class="form-control" type="file" id="akta" name="akta">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="ijazah" class="form-label">Ijazah / SKL</label>
+                            <input class="form-control" type="file" id="ijazah" name="ijazah">
                         </div>
 
 
