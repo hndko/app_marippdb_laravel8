@@ -27,4 +27,7 @@ Route::middleware(['auth'])->group(function () {
     // Registration Routes (for Students)
     Route::get('/registration', [App\Http\Controllers\RegistrationController::class, 'index'])->name('registration.index');
     Route::post('/registration', [App\Http\Controllers\RegistrationController::class, 'store'])->name('registration.store');
+
+    // Announcement Route (for Students)
+    Route::get('/announcement', [App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcement.index');
 });
