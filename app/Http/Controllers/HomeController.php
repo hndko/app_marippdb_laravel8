@@ -32,6 +32,6 @@ class HomeController extends Controller
         $verified_students = 0;
         $pending_students = 0;
 
-        return view('home', compact('total_students', 'verified_students', 'pending_students'));
+        return view('backend.dashboard', compact('total_students', 'verified_students', 'pending_students'));
     }
 }

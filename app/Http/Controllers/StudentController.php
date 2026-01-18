@@ -33,7 +33,7 @@ class StudentController extends Controller
 
         $students = $query->latest()->paginate(10);
 
-        return view('students.index', compact('students'));
+        return view('backend.students.index', compact('students'));
     }
 
     /**
@@ -43,7 +43,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('backend.students.create');
     }
 
     /**
@@ -54,9 +54,56 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // Validation and Store logic
-        // For now, skeletal
-        return redirect()->route('students.index')->with('success', 'Student created successfully.');
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'nisn' => 'required|string|unique:students,nisn|max:20',
+            'nik' => 'required|string|unique:students,nik|max:20',
+            'gender' => 'required|in:L,P',
+            'birth_place' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'address' => 'required|string',
+            'school_origin' => 'required|string|max:255',
+            'graduation_year' => 'required|integer',
+            'jalur_pendaftaran' => 'required|string',
+            'father_name' => 'required|string|max:255',
+            'mother_name' => 'required|string|max:255',
+        ]);
+
+        // Create User
+        $user = \App\Models\User::create([
+            'name' => $request->full_name,
+            'email' => $request->nisn . '@student.com', // Dummy email based on NISN
+            'password' => bcrypt('password'), // Default password
+            'role' => 'student',
+        ]);
+
+        // Create Student
+        $student = Student::create([
+            'user_id' => $user->id,
+            'registration_number' => 'REG-' . time() . '-' . rand(1000, 9999),
+            'nisn' => $request->nisn,
+            'nik' => $request->nik,
+            'full_name' => $request->full_name,
+            'gender' => $request->gender,
+            'birth_place' => $request->birth_place,
+            'birth_date' => $request->birth_date,
+            'religion' => $request->religion,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'school_origin' => $request->school_origin,
+            'graduation_year' => $request->graduation_year,
+            'jalur_pendaftaran' => $request->jalur_pendaftaran,
+            'status' => 'pending',
+        ]);
+
+        // Create Parent
+        $student->parents()->create([
+            'father_name' => $request->father_name,
+            'mother_name' => $request->mother_name,
+            'guardian_name' => $request->guardian_name,
+        ]);
+
+        return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
 
     /**
@@ -67,7 +114,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('students.show', compact('student'));
+        return view('backend.students.show', compact('student'));
     }
 
     /**
@@ -78,7 +125,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('students.edit', compact('student'));
+        return view('backend.students.edit', compact('student'));
     }
 
     /**
@@ -90,8 +137,54 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        // Update logic
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'nisn' => 'required|string|max:20|unique:students,nisn,' . $student->id,
+            'nik' => 'required|string|max:20|unique:students,nik,' . $student->id,
+            'gender' => 'required|in:L,P',
+            'birth_place' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'address' => 'required|string',
+            'school_origin' => 'required|string|max:255',
+            'graduation_year' => 'required|integer',
+            'jalur_pendaftaran' => 'required|string',
+            'father_name' => 'required|string|max:255',
+            'mother_name' => 'required|string|max:255',
+        ]);
+
+        // Update Student
+        $student->update([
+            'nisn' => $request->nisn,
+            'nik' => $request->nik,
+            'full_name' => $request->full_name,
+            'gender' => $request->gender,
+            'birth_place' => $request->birth_place,
+            'birth_date' => $request->birth_date,
+            'religion' => $request->religion,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'school_origin' => $request->school_origin,
+            'graduation_year' => $request->graduation_year,
+            'jalur_pendaftaran' => $request->jalur_pendaftaran,
+            'status' => $request->status ?? $student->status,
+        ]);
+
+        // Update User Name
+        if ($student->user) {
+            $student->user->update(['name' => $request->full_name]);
+        }
+
+        // Update Parent
+        $student->parents()->updateOrCreate(
+            ['student_id' => $student->id],
+            [
+                'father_name' => $request->father_name,
+                'mother_name' => $request->mother_name,
+                'guardian_name' => $request->guardian_name,
+            ]
+        );
+
+        return redirect()->route('students.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     /**
@@ -103,6 +196,6 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus.');
     }
 }
