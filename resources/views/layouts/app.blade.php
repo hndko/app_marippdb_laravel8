@@ -155,28 +155,37 @@
                             </a>
                         </li>
 
+                        @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'operator']))
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('students*') ? 'active' : '' }}"
                                 href="{{ route('students.index') }}">
                                 <i class="ri-user-line"></i> <span data-key="t-students">Data Siswa</span>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="ri-file-list-3-line"></i> <span data-key="t-verification">Verifikasi</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if(Auth::check() && Auth::user()->role == 'student')
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('registration*') ? 'active' : '' }}"
+                                href="{{ route('registration.index') }}">
+                                <i class="ri-file-list-3-line"></i> <span data-key="t-registration">Pendaftaran</span>
+                            </a>
+                        </li>
+                        @endif
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="ri-megaphone-line"></i> <span data-key="t-announcement">Pengumuman</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>
                             </a>
                         </li>
 

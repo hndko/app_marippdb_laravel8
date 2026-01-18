@@ -22,5 +22,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('students', App\Http\Controllers\StudentController::class);
+    Route::resource('students', App\Http\Controllers\StudentController::class)->middleware('room:admin,operator'); // Middleware to be refined later if needed, for now just keeping it under auth but logically should be admin/operator
+
+    // Registration Routes (for Students)
+    Route::get('/registration', [App\Http\Controllers\RegistrationController::class, 'index'])->name('registration.index');
+    Route::post('/registration', [App\Http\Controllers\RegistrationController::class, 'store'])->name('registration.store');
 });
