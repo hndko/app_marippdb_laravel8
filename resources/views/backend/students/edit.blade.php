@@ -166,28 +166,28 @@
                             <div>
                                 <label for="father_name" class="form-label">Nama Ayah</label>
                                 <input type="text" class="form-control" id="father_name" name="father_name"
-                                    value="{{ old('father_name', $student->parents?->father_name) }}" required>
+                                    value="{{ old('father_name', optional($student->parents)->father_name) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_nik" class="form-label">NIK Ayah</label>
                                 <input type="text" class="form-control" id="father_nik" name="father_nik"
-                                    value="{{ old('father_nik', $student->parents?->father_nik) }}" required>
+                                    value="{{ old('father_nik', optional($student->parents)->father_nik) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_job" class="form-label">Pekerjaan Ayah</label>
                                 <input type="text" class="form-control" id="father_job" name="father_job"
-                                    value="{{ old('father_job', $student->parents?->father_job) }}" required>
+                                    value="{{ old('father_job', optional($student->parents)->father_job) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_phone" class="form-label">No. HP Ayah</label>
                                 <input type="text" class="form-control" id="father_phone" name="father_phone"
-                                    value="{{ old('father_phone', $student->parents?->father_phone) }}">
+                                    value="{{ old('father_phone', optional($student->parents)->father_phone) }}">
                             </div>
                         </div>
 
@@ -196,28 +196,28 @@
                             <div>
                                 <label for="mother_name" class="form-label">Nama Ibu</label>
                                 <input type="text" class="form-control" id="mother_name" name="mother_name"
-                                    value="{{ old('mother_name', $student->parents?->mother_name) }}" required>
+                                    value="{{ old('mother_name', optional($student->parents)->mother_name) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_nik" class="form-label">NIK Ibu</label>
                                 <input type="text" class="form-control" id="mother_nik" name="mother_nik"
-                                    value="{{ old('mother_nik', $student->parents?->mother_nik) }}" required>
+                                    value="{{ old('mother_nik', optional($student->parents)->mother_nik) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_job" class="form-label">Pekerjaan Ibu</label>
                                 <input type="text" class="form-control" id="mother_job" name="mother_job"
-                                    value="{{ old('mother_job', $student->parents?->mother_job) }}" required>
+                                    value="{{ old('mother_job', optional($student->parents)->mother_job) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_phone" class="form-label">No. HP Ibu</label>
                                 <input type="text" class="form-control" id="mother_phone" name="mother_phone"
-                                    value="{{ old('mother_phone', $student->parents?->mother_phone) }}">
+                                    value="{{ old('mother_phone', optional($student->parents)->mother_phone) }}">
                             </div>
                         </div>
 
@@ -225,7 +225,7 @@
                             <div>
                                 <label for="guardian_name" class="form-label">Nama Wali (Opsional)</label>
                                 <input type="text" class="form-control" id="guardian_name" name="guardian_name"
-                                    value="{{ old('guardian_name', $student->parents?->guardian_name) }}">
+                                    value="{{ old('guardian_name', optional($student->parents)->guardian_name) }}">
                             </div>
                         </div>
 

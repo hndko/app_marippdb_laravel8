@@ -50,21 +50,21 @@
                             <div>
                                 <label for="nisn" class="form-label">NISN</label>
                                 <input type="text" class="form-control" id="nisn" name="nisn"
-                                    value="{{ old('nisn', $student->nisn ?? '') }}" required>
+                                    value="{{ old('nisn', optional($student)->nisn) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="nik" class="form-label">NIK</label>
                                 <input type="text" class="form-control" id="nik" name="nik"
-                                    value="{{ old('nik', $student->nik ?? '') }}" required>
+                                    value="{{ old('nik', optional($student)->nik) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="phone" class="form-label">No. Telepon</label>
                                 <input type="text" class="form-control" id="phone" name="phone"
-                                    value="{{ old('phone', $student->phone ?? '') }}">
+                                    value="{{ old('phone', optional($student)->phone) }}">
                             </div>
                         </div>
 
@@ -72,9 +72,11 @@
                             <div>
                                 <label for="gender" class="form-label">Jenis Kelamin</label>
                                 <select class="form-control" id="gender" name="gender" required>
-                                    <option value="L" {{ (old('gender', $student->gender ?? '') == 'L') ? 'selected' :
+                                    <option value="L" {{ (old('gender', optional($student)->gender) == 'L') ? 'selected'
+                                        :
                                         '' }}>Laki-laki</option>
-                                    <option value="P" {{ (old('gender', $student->gender ?? '') == 'P') ? 'selected' :
+                                    <option value="P" {{ (old('gender', optional($student)->gender) == 'P') ? 'selected'
+                                        :
                                         '' }}>Perempuan</option>
                                 </select>
                             </div>
@@ -83,31 +85,36 @@
                             <div>
                                 <label for="birth_place" class="form-label">Tempat Lahir</label>
                                 <input type="text" class="form-control" id="birth_place" name="birth_place"
-                                    value="{{ old('birth_place', $student->birth_place ?? '') }}" required>
+                                    value="{{ old('birth_place', optional($student)->birth_place) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="birth_date" class="form-label">Tanggal Lahir</label>
                                 <input type="date" class="form-control" id="birth_date" name="birth_date"
-                                    value="{{ old('birth_date', $student->birth_date ?? '') }}" required>
+                                    value="{{ old('birth_date', optional($student)->birth_date) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="religion" class="form-label">Agama</label>
                                 <select class="form-control" id="religion" name="religion" required>
-                                    <option value="Islam" {{ (old('religion', $student->religion ?? '') == 'Islam') ?
+                                    <option value="Islam" {{ (old('religion', optional($student)->religion) == 'Islam')
+                                        ?
                                         'selected' : '' }}>Islam</option>
-                                    <option value="Kristen" {{ (old('religion', $student->religion ?? '') == 'Kristen')
+                                    <option value="Kristen" {{ (old('religion', optional($student)->religion) ==
+                                        'Kristen')
                                         ? 'selected' : '' }}>Kristen</option>
-                                    <option value="Katolik" {{ (old('religion', $student->religion ?? '') == 'Katolik')
+                                    <option value="Katolik" {{ (old('religion', optional($student)->religion) ==
+                                        'Katolik')
                                         ? 'selected' : '' }}>Katolik</option>
-                                    <option value="Hindu" {{ (old('religion', $student->religion ?? '') == 'Hindu') ?
+                                    <option value="Hindu" {{ (old('religion', optional($student)->religion) == 'Hindu')
+                                        ?
                                         'selected' : '' }}>Hindu</option>
-                                    <option value="Buddha" {{ (old('religion', $student->religion ?? '') == 'Buddha') ?
+                                    <option value="Buddha" {{ (old('religion', optional($student)->religion) ==
+                                        'Buddha') ?
                                         'selected' : '' }}>Buddha</option>
-                                    <option value="Konghucu" {{ (old('religion', $student->religion ?? '') ==
+                                    <option value="Konghucu" {{ (old('religion', optional($student)->religion) ==
                                         'Konghucu') ? 'selected' : '' }}>Konghucu</option>
                                 </select>
                             </div>
@@ -117,28 +124,32 @@
                             <div>
                                 <label for="school_origin" class="form-label">Sekolah Asal</label>
                                 <input type="text" class="form-control" id="school_origin" name="school_origin"
-                                    value="{{ old('school_origin', $student->school_origin ?? '') }}" required>
+                                    value="{{ old('school_origin', optional($student)->school_origin) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="graduation_year" class="form-label">Tahun Lulus</label>
                                 <input type="number" class="form-control" id="graduation_year" name="graduation_year"
-                                    value="{{ old('graduation_year', $student->graduation_year ?? '') }}" required>
+                                    value="{{ old('graduation_year', optional($student)->graduation_year) }}" required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="jalur_pendaftaran" class="form-label">Jalur Pendaftaran</label>
                                 <select class="form-control" id="jalur_pendaftaran" name="jalur_pendaftaran" required>
-                                    <option value="Zonasi" {{ (old('jalur_pendaftaran', $student->jalur_pendaftaran ??
-                                        '') == 'Zonasi') ? 'selected' : '' }}>Zonasi</option>
-                                    <option value="Prestasi" {{ (old('jalur_pendaftaran', $student->jalur_pendaftaran ??
-                                        '') == 'Prestasi') ? 'selected' : '' }}>Prestasi</option>
-                                    <option value="Afirmasi" {{ (old('jalur_pendaftaran', $student->jalur_pendaftaran ??
-                                        '') == 'Afirmasi') ? 'selected' : '' }}>Afirmasi</option>
-                                    <option value="Perpindahan Orang Tua" {{ (old('jalur_pendaftaran', $student->
-                                        jalur_pendaftaran ?? '') == 'Perpindahan Orang Tua') ? 'selected' : ''
+                                    <option value="Zonasi" {{ (old('jalur_pendaftaran', optional($student)->
+                                        jalur_pendaftaran
+                                        ) == 'Zonasi') ? 'selected' : '' }}>Zonasi</option>
+                                    <option value="Prestasi" {{ (old('jalur_pendaftaran', optional($student)->
+                                        jalur_pendaftaran
+                                        ) == 'Prestasi') ? 'selected' : '' }}>Prestasi</option>
+                                    <option value="Afirmasi" {{ (old('jalur_pendaftaran', optional($student)->
+                                        jalur_pendaftaran
+                                        ) == 'Afirmasi') ? 'selected' : '' }}>Afirmasi</option>
+                                    <option value="Perpindahan Orang Tua" {{ (old('jalur_pendaftaran',
+                                        optional($student)->
+                                        jalur_pendaftaran) == 'Perpindahan Orang Tua') ? 'selected' : ''
                                         }}>Perpindahan Orang Tua</option>
                                 </select>
                             </div>
@@ -148,7 +159,7 @@
                             <div>
                                 <label for="address" class="form-label">Alamat Lengkap</label>
                                 <textarea class="form-control" id="address" name="address" rows="3"
-                                    required>{{ old('address', $student->address ?? '') }}</textarea>
+                                    required>{{ old('address', optional($student)->address) }}</textarea>
                             </div>
                         </div>
 
@@ -163,28 +174,31 @@
                             <div>
                                 <label for="father_name" class="form-label">Nama Ayah</label>
                                 <input type="text" class="form-control" id="father_name" name="father_name"
-                                    value="{{ old('father_name', $student->parents->father_name ?? '') }}" required>
+                                    value="{{ old('father_name', optional(optional($student)->parents)->father_name) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_nik" class="form-label">NIK Ayah</label>
                                 <input type="text" class="form-control" id="father_nik" name="father_nik"
-                                    value="{{ old('father_nik', $student->parents->father_nik ?? '') }}" required>
+                                    value="{{ old('father_nik', optional(optional($student)->parents)->father_nik) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_job" class="form-label">Pekerjaan Ayah</label>
                                 <input type="text" class="form-control" id="father_job" name="father_job"
-                                    value="{{ old('father_job', $student->parents->father_job ?? '') }}" required>
+                                    value="{{ old('father_job', optional(optional($student)->parents)->father_job) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_phone" class="form-label">No. HP Ayah</label>
                                 <input type="text" class="form-control" id="father_phone" name="father_phone"
-                                    value="{{ old('father_phone', $student->parents->father_phone ?? '') }}">
+                                    value="{{ old('father_phone', optional(optional($student)->parents)->father_phone) }}">
                             </div>
                         </div>
 
@@ -193,28 +207,31 @@
                             <div>
                                 <label for="mother_name" class="form-label">Nama Ibu</label>
                                 <input type="text" class="form-control" id="mother_name" name="mother_name"
-                                    value="{{ old('mother_name', $student->parents->mother_name ?? '') }}" required>
+                                    value="{{ old('mother_name', optional(optional($student)->parents)->mother_name) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_nik" class="form-label">NIK Ibu</label>
                                 <input type="text" class="form-control" id="mother_nik" name="mother_nik"
-                                    value="{{ old('mother_nik', $student->parents->mother_nik ?? '') }}" required>
+                                    value="{{ old('mother_nik', optional(optional($student)->parents)->mother_nik) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_job" class="form-label">Pekerjaan Ibu</label>
                                 <input type="text" class="form-control" id="mother_job" name="mother_job"
-                                    value="{{ old('mother_job', $student->parents->mother_job ?? '') }}" required>
+                                    value="{{ old('mother_job', optional(optional($student)->parents)->mother_job) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_phone" class="form-label">No. HP Ibu</label>
                                 <input type="text" class="form-control" id="mother_phone" name="mother_phone"
-                                    value="{{ old('mother_phone', $student->parents->mother_phone ?? '') }}">
+                                    value="{{ old('mother_phone', optional(optional($student)->parents)->mother_phone) }}">
                             </div>
                         </div>
 
@@ -222,7 +239,7 @@
                             <div>
                                 <label for="guardian_name" class="form-label">Nama Wali (Opsional)</label>
                                 <input type="text" class="form-control" id="guardian_name" name="guardian_name"
-                                    value="{{ old('guardian_name', $student->parents->guardian_name ?? '') }}">
+                                    value="{{ old('guardian_name', optional(optional($student)->parents)->guardian_name) }}">
                             </div>
                         </div>
 

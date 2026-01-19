@@ -110,25 +110,25 @@
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">Nama Ayah</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->father_name ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->father_name ?? '-' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">NIK Ayah</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->father_nik ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->father_nik ?? '-' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">Pekerjaan Ayah</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->father_job ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->father_job ?? '-' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">No. HP Ayah</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->father_phone ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->father_phone ?? '-' }}</p>
                         </div>
                     </div>
 
@@ -136,32 +136,32 @@
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">Nama Ibu</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->mother_name ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->mother_name ?? '-' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">NIK Ibu</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->mother_nik ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->mother_nik ?? '-' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">Pekerjaan Ibu</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->mother_job ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->mother_job ?? '-' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">No. HP Ibu</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->mother_phone ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->mother_phone ?? '-' }}</p>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <h6 class="fs-12 text-muted fw-medium text-uppercase">Nama Wali</h6>
-                            <p class="fs-14 mb-0">{{ $student->parents->guardian_name ?? '-' }}</p>
+                            <p class="fs-14 mb-0">{{ optional($student->parents)->guardian_name ?? '-' }}</p>
                         </div>
                     </div>
                 </div>
