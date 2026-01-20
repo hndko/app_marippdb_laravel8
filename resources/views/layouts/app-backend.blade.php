@@ -164,7 +164,9 @@
                         </li>
 
                         @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'operator']))
-                        <li class="menu-title"><span data-key="t-admin">Administrator</span></li>
+
+                        <!-- Manajemen Data -->
+                        <li class="menu-title"><span data-key="t-data-management">Manajemen Data</span></li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('students*') ? 'active' : '' }}"
                                 href="{{ route('students.index') }}">
@@ -177,17 +179,14 @@
                                 <i class="ri-shield-check-line"></i> <span data-key="t-verification">Verifikasi</span>
                             </a>
                         </li>
+
+                        <!-- Manajemen Landing Page (Admin Only) -->
                         @if(Auth::user()->role == 'admin')
+                        <li class="menu-title"><span data-key="t-landing-management">Halaman Depan</span></li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('announcements*') ? 'active' : '' }}"
                                 href="{{ route('announcements.index') }}">
                                 <i class="ri-megaphone-line"></i> <span data-key="t-announcements">Pengumuman</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('settings.index') ? 'active' : '' }}"
-                                href="{{ route('settings.index') }}">
-                                <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -200,6 +199,21 @@
                             <a class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}"
                                 href="{{ route('services.index') }}">
                                 <i class="ri-service-line"></i> <span data-key="t-services">Layanan Landing</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('testimonials.*') ? 'active' : '' }}"
+                                href="{{ route('testimonials.index') }}">
+                                <i class="ri-discuss-line"></i> <span data-key="t-testimonials">Testimoni</span>
+                            </a>
+                        </li>
+
+                        <!-- Pengaturan Sistem (Admin Only) -->
+                        <li class="menu-title"><span data-key="t-system">Sistem</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('settings.index') ? 'active' : '' }}"
+                                href="{{ route('settings.index') }}">
+                                <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>
                             </a>
                         </li>
                         @endif

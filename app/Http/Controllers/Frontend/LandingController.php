@@ -64,6 +64,7 @@ class LandingController extends Controller
     public function testimonials()
     {
         $data = $this->getCommonData();
+        $data['testimonials'] = \App\Models\Testimonial::where('is_active', true)->latest()->get();
         return view('frontend.pages.testimonials', $data);
     }
 }

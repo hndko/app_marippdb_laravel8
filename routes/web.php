@@ -152,6 +152,27 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'destroy'])->name('destroy');
     });
 
+    // --- Testimonials Routes (Admin Only) ---
+    Route::middleware(['role:admin'])->prefix('testimonials')->name('testimonials.')->group(function () {
+        // NOTE: Display list of testimonials
+        Route::get('/', [App\Http\Controllers\Backend\TestimonialController::class, 'index'])->name('index');
+
+        // NOTE: Show form to create new testimonial
+        Route::get('/create', [App\Http\Controllers\Backend\TestimonialController::class, 'create'])->name('create');
+
+        // NOTE: Store new testimonial
+        Route::post('/', [App\Http\Controllers\Backend\TestimonialController::class, 'store'])->name('store');
+
+        // NOTE: Show form to edit testimonial
+        Route::get('/{id}/edit', [App\Http\Controllers\Backend\TestimonialController::class, 'edit'])->name('edit');
+
+        // NOTE: Update testimonial
+        Route::put('/{id}', [App\Http\Controllers\Backend\TestimonialController::class, 'update'])->name('update');
+
+        // NOTE: Delete testimonial
+        Route::delete('/{id}', [App\Http\Controllers\Backend\TestimonialController::class, 'destroy'])->name('destroy');
+    });
+
     // --- Profile Routes ---
     Route::prefix('profile')->name('profile.')->group(function () {
         // NOTE: Show profile edit form
