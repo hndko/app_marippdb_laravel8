@@ -31,7 +31,7 @@ class StudentController extends Controller
             $query->where('status', $request->status);
         }
 
-        $students = $query->latest()->paginate(10);
+        $students = $query->latest()->get();
 
         return view('backend.students.index', compact('students'));
     }

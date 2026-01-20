@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="sm-hover"
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
     data-sidebar-image="none" data-preloader="disable">
 
 <head>
@@ -32,8 +32,13 @@
     <!-- Sweet Alert css-->
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 
-    @yield('styles')
+    <!--datatable css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
+    @yield('styles')
 </head>
 
 <body>
@@ -274,33 +279,79 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--datatable js-->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
     <!-- Sweet Alerts js -->
     <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script>
         @if(session('success'))
             Swal.fire({
-                toast: true,
-                position: 'top-end',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
                 icon: 'success',
-                title: '{{ session('success') }}',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
+                confirmButtonText: 'OK',
+                customClass: {
+                    confirmButton: 'btn btn-primary w-xs mt-2',
+                },
+                buttonsStyling: false,
+                showCloseButton: true
             });
         @endif
 
         @if(session('error'))
             Swal.fire({
-                toast: true,
-                position: 'top-end',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
                 icon: 'error',
-                title: '{{ session('error') }}',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
+                confirmButtonText: 'OK',
+                customClass: {
+                    confirmButton: 'btn btn-primary w-xs mt-2',
+                },
+                buttonsStyling: false,
+                showCloseButton: true
             });
         @endif
+
+        // Global Delete Confirmation
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteForms = document.querySelectorAll('.delete-form');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data yang dihapus tidak dapat dikembalikan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal',
+                        customClass: {
+                            confirmButton: 'btn btn-primary w-xs me-2 mt-2',
+                            cancelButton: 'btn btn-danger w-xs mt-2'
+                        },
+                        buttonsStyling: false,
+                        showCloseButton: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
     </script>
 
     @yield('scripts')

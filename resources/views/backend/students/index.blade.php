@@ -64,9 +64,11 @@
                     </div>
                 </form>
 
-                <div class="table-responsive table-card">
-                    <table class="table table-nowrap table-striped-columns mb-0">
-                        <thead class="table-light">
+                <div class="table-responsive">
+                    <table id="alternative-pagination"
+                        class="table table-nowrap dt-responsive align-middle table-striped table-bordered"
+                        style="width:100%">
+                        <thead>
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">No. Pendaftaran</th>
@@ -78,9 +80,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($students as $key => $student)
+                            @foreach($students as $key => $student)
                             <tr>
-                                <td>{{ $students->firstItem() + $key }}</td>
+                                <td>{{ $key + 1 }}</td>
                                 <td><a href="#" class="fw-semibold">{{ $student->registration_number }}</a></td>
                                 <td>{{ $student->full_name }}</td>
                                 <td>{{ $student->gender }}</td>
@@ -106,7 +108,7 @@
                                         <a href="{{ route('students.edit', $student->id) }}"
                                             class="link-warning fs-15"><i class="ri-edit-2-line"></i></a>
                                         <form action="{{ route('students.destroy', $student->id) }}" method="POST"
-                                            class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?');">
+                                            class="d-inline delete-form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="link-danger fs-15 btn btn-link p-0"><i
@@ -115,21 +117,23 @@
                                     </div>
                                 </td>
                             </tr>
-                            @empty
-                            <tr>
-                                <td colspan="7" class="text-center">Belum ada data siswa.</td>
-                            </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
-                </div>
-
-                <div class="d-flex justify-content-end mt-3">
-                    {{ $students->links() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        new DataTable("#alternative-pagination", {
+            pagingType: "full_numbers"
+        });
+    });
+</script>
 @endsection
