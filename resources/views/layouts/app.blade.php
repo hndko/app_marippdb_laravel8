@@ -54,19 +54,19 @@
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="{{ route('home') }}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                                    <span class="fw-bold fs-22 text-dark">MP</span>
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                                    <span class="fw-bold fs-20 text-dark">Mari PPDB</span>
                                 </span>
                             </a>
 
                             <a href="{{ route('home') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                                    <span class="fw-bold fs-22 text-white">MP</span>
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="17">
+                                    <span class="fw-bold fs-20 text-white">Mari PPDB</span>
                                 </span>
                             </a>
                         </div>
@@ -128,19 +128,19 @@
                 <!-- Dark Logo-->
                 <a href="{{ route('home') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                        <span class="fw-bold fs-22 text-dark">{{ config('app.shortname') }}</span>
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                        <span class="fw-bold fs-20 text-dark">{{ config('app.name') }}</span>
                     </span>
                 </a>
                 <!-- Light Logo-->
                 <a href="{{ route('home') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                        <span class="fw-bold fs-22 text-white">{{ config('app.shortname') }}</span>
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="17">
+                        <span class="fw-bold fs-20 text-white">{{ config('app.name') }}</span>
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -171,8 +171,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="ri-file-list-3-line"></i> <span data-key="t-verification">Verifikasi</span>
+                            <a class="nav-link {{ request()->routeIs('verification.index') ? 'active' : '' }}"
+                                href="{{ route('verification.index') }}">
+                                <i class="ri-shield-check-line"></i> <span data-key="t-verification">Verifikasi</span>
                             </a>
                         </li>
                         <li class="nav-item">

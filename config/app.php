@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Mari PPDB'),
+
+    'shortname' => env('APP_SHORTNAME', 'MP'),
 
     /*
     |--------------------------------------------------------------------------
