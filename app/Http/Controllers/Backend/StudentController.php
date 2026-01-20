@@ -156,8 +156,9 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
+        $student = Student::findOrFail($id);
         $data['student'] = $student->load(['user', 'parents', 'files']);
         return view('backend.students.show', $data);
     }
@@ -168,8 +169,9 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
+        $student = Student::findOrFail($id);
         // Eager load for edit view if needed
         $data['student'] = $student->load(['parents']);
         return view('backend.students.edit', $data);
@@ -182,8 +184,9 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
+        $student = Student::findOrFail($id);
         $request->validate([
             'full_name' => 'required|string|max:255',
             'nisn' => 'required|string|max:20|unique:students,nisn,' . $student->id,
@@ -280,8 +283,9 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
+        $student = Student::findOrFail($id);
         // Ideally we should delete files too here using Storage::delete()
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus.');
@@ -294,8 +298,9 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function verify(Request $request, Student $student)
+    public function verify(Request $request, $id)
     {
+        $student = Student::findOrFail($id);
         $request->validate([
             'status' => 'required|in:verified,rejected,accepted,pending',
         ]);

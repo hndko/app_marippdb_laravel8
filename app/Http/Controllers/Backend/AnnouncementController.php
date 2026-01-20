@@ -78,8 +78,9 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit($id)
     {
+        $announcement = Announcement::findOrFail($id);
         $data['announcement'] = $announcement;
         return view('backend.announcements.edit', $data);
     }
@@ -91,8 +92,9 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(Request $request, $id)
     {
+        $announcement = Announcement::findOrFail($id);
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
@@ -136,8 +138,9 @@ class AnnouncementController extends Controller
      * @param  \App\Models\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy($id)
     {
+        $announcement = Announcement::findOrFail($id);
         $disk = Storage::disk('public');
         if ($announcement->image && $disk->exists($announcement->image)) {
             $disk->delete($announcement->image);
