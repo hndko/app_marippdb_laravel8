@@ -164,6 +164,7 @@
                         </li>
 
                         @if(Auth::check() && in_array(Auth::user()->role, ['admin', 'operator']))
+                        <li class="menu-title"><span data-key="t-admin">Administrator</span></li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('students*') ? 'active' : '' }}"
                                 href="{{ route('students.index') }}">
@@ -193,19 +194,20 @@
                         @endif
 
                         @if(Auth::check() && Auth::user()->role == 'student')
+                        <li class="menu-title"><span data-key="t-student">Panel Siswa</span></li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('registration*') ? 'active' : '' }}"
                                 href="{{ route('registration.index') }}">
                                 <i class="ri-file-list-3-line"></i> <span data-key="t-registration">Pendaftaran</span>
                             </a>
                         </li>
-                        @endif
-
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="ri-megaphone-line"></i> <span data-key="t-announcement">Pengumuman</span>
+                            <a class="nav-link {{ request()->routeIs('graduation.index') ? 'active' : '' }}"
+                                href="{{ route('graduation.index') }}">
+                                <i class="ri-medal-line"></i> <span data-key="t-graduation">Hasil Seleksi</span>
                             </a>
                         </li>
+                        @endif
 
                     </ul>
                 </div>
