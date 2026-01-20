@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('students', App\Http\Controllers\StudentController::class)->middleware('role:admin,operator');
+    Route::post('/students/{student}/verify', [App\Http\Controllers\StudentController::class, 'verify'])->name('students.verify')->middleware('role:admin,operator');
 
     // Registration Routes (for Students)
     Route::get('/registration', [App\Http\Controllers\RegistrationController::class, 'index'])->name('registration.index');

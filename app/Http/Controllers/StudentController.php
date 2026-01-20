@@ -262,4 +262,26 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus.');
     }
+
+    /**
+     * Verify the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function verify(Request $request, Student $student)
+    {
+        $request->validate([
+            'status' => 'required|in:verified,rejected,accepted,pending',
+        ]);
+
+        $student->update([
+            'status' => $request->status,
+        ]);
+
+        $message = 'Status siswa berhasil diperbarui menjadi ' . ucfirst($request->status) . '.';
+
+        return redirect()->back()->with('success', $message);
+    }
 }

@@ -17,6 +17,59 @@
 </div>
 
 <div class="row">
+    @if(auth()->user()->role == 'admin' || auth()->user()->role == 'operator')
+    <div class="col-lg-12">
+        <div class="card bg-light-subtle shadow-none border">
+            <div class="card-header bg-light-subtle border-0">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="card-title mb-0"><i class="ri-shield-check-line align-middle me-1"></i> Aksi
+                            Verifikasi</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-3">Silakan tinjau data dan berkas siswa di bawah ini sebelum melakukan
+                    verifikasi.</p>
+                <div class="d-flex gap-2">
+                    @if($student->status == 'pending')
+                    <button type="button" class="btn btn-success" id="btn-verify">
+                        <i class="ri-check-double-line align-middle me-1"></i> Verifikasi Data
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btn-reject">
+                        <i class="ri-close-circle-line align-middle me-1"></i> Tolak Pendaftaran
+                    </button>
+                    @elseif($student->status == 'verified')
+                    <button type="button" class="btn btn-info" id="btn-accept">
+                        <i class="ri-trophy-line align-middle me-1"></i> Terima Siswa (Lulus)
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btn-reject">
+                        <i class="ri-close-circle-line align-middle me-1"></i> Batalkan / Tolak
+                    </button>
+                    @elseif($student->status == 'rejected')
+                    <button type="button" class="btn btn-warning" id="btn-pending">
+                        <i class="ri-history-line align-middle me-1"></i> Tinjau Ulang (Kembalikan ke Pending)
+                    </button>
+                    @elseif($student->status == 'accepted')
+                    <div class="alert alert-success w-100 mb-0">
+                        <strong><i class="ri-check-line me-1"></i> Siswa ini telah DITERIMA.</strong>
+                    </div>
+                    @endif
+                </div>
+
+                <!-- Hidden Form for Status Update -->
+                <form id="verify-form" action="{{ route('students.verify', $student->id) }}" method="POST"
+                    class="d-none">
+                    @csrf
+                    <input type="hidden" name="status" id="verify-status">
+                </form>
+            </div>
+        </div>
+    </div>
+    @endif
+</div>
+
+<div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
@@ -208,4 +261,57 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const verifyForm = document.getElementById('verify-form');
+        const statusInput = document.getElementById('verify-status');
+
+        // Helper function to submit form
+        const submitStatus = (status, title, text, icon = 'question', confirmColor = '#25a0e2') => {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+                showCancelButton: true,
+                confirmButtonColor: confirmColor,
+                cancelButtonColor: '#f46a6a',
+                confirmButtonText: 'Ya, Lanjutkan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    statusInput.value = status;
+                    verifyForm.submit();
+                }
+            });
+        };
+
+        // Attach events safely
+        if(document.getElementById('btn-verify')) {
+            document.getElementById('btn-verify').addEventListener('click', function() {
+                submitStatus('verified', 'Verifikasi Data?', 'Pastikan semua data dan berkas sudah valid.', 'success', '#0ab39c');
+            });
+        }
+
+        if(document.getElementById('btn-accept')) {
+            document.getElementById('btn-accept').addEventListener('click', function() {
+                submitStatus('accepted', 'Terima Siswa?', 'Siswa akan dinyatakan LULUS seleksi.', 'success', '#0ab39c');
+            });
+        }
+
+        if(document.getElementById('btn-reject')) {
+            document.getElementById('btn-reject').addEventListener('click', function() {
+                submitStatus('rejected', 'Tolak Pendaftaran?', 'Siswa akan dinyatakan TIDAK LULUS / Ditolak.', 'warning', '#f06548');
+            });
+        }
+
+        if(document.getElementById('btn-pending')) {
+            document.getElementById('btn-pending').addEventListener('click', function() {
+                submitStatus('pending', 'Tinjau Ulang?', 'Status siswa akan dikembalikan menjadi Pending.', 'info', '#f7b84b');
+            });
+        }
+    });
+</script>
 @endsection
