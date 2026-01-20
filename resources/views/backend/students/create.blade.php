@@ -54,7 +54,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="gender" class="form-label">Jenis Kelamin</label>
-                                <select class="form-control" id="gender" name="gender" required>
+                                <select class="form-select" id="gender" name="gender" required>
                                     <option value="L">Laki-laki</option>
                                     <option value="P">Perempuan</option>
                                 </select>
@@ -75,7 +75,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="religion" class="form-label">Agama</label>
-                                <select class="form-control" id="religion" name="religion" required>
+                                <select class="form-select" id="religion" name="religion" required>
                                     <option value="Islam">Islam</option>
                                     <option value="Kristen">Kristen</option>
                                     <option value="Katolik">Katolik</option>
@@ -103,7 +103,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="jalur_pendaftaran" class="form-label">Jalur Pendaftaran</label>
-                                <select class="form-control" id="jalur_pendaftaran" name="jalur_pendaftaran" required>
+                                <select class="form-select" id="jalur_pendaftaran" name="jalur_pendaftaran" required>
                                     <option value="Zonasi">Zonasi</option>
                                     <option value="Prestasi">Prestasi</option>
                                     <option value="Afirmasi">Afirmasi</option>

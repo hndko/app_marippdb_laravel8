@@ -60,7 +60,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="gender" class="form-label">Jenis Kelamin</label>
-                                <select class="form-control" id="gender" name="gender" required>
+                                <select class="form-select" id="gender" name="gender" required>
                                     <option value="L" {{ $student->gender == 'L' ? 'selected' : '' }}>Laki-laki</option>
                                     <option value="P" {{ $student->gender == 'P' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
@@ -83,7 +83,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="religion" class="form-label">Agama</label>
-                                <select class="form-control" id="religion" name="religion" required>
+                                <select class="form-select" id="religion" name="religion" required>
                                     <option value="Islam" {{ $student->religion == 'Islam' ? 'selected' : '' }}>Islam
                                     </option>
                                     <option value="Kristen" {{ $student->religion == 'Kristen' ? 'selected' : ''
@@ -117,7 +117,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="jalur_pendaftaran" class="form-label">Jalur Pendaftaran</label>
-                                <select class="form-control" id="jalur_pendaftaran" name="jalur_pendaftaran" required>
+                                <select class="form-select" id="jalur_pendaftaran" name="jalur_pendaftaran" required>
                                     <option value="Zonasi" {{ $student->jalur_pendaftaran == 'Zonasi' ? 'selected' : ''
                                         }}>Zonasi</option>
                                     <option value="Prestasi" {{ $student->jalur_pendaftaran == 'Prestasi' ? 'selected' :
@@ -131,8 +131,9 @@
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
-                                <label for="status" class="form-label">Status Pendaftaran (Admin Only)</label>
-                                <select class="form-control" id="status" name="status" required>
+                                <label for="registration_status" class="form-label">Status Pendaftaran (Admin
+                                    Only)</label>
+                                <select class="form-select" id="registration_status" name="status" required>
                                     <option value="pending" {{ $student->status == 'pending' ? 'selected' : ''
                                         }}>Pending</option>
                                     <option value="verified" {{ $student->status == 'verified' ? 'selected' : ''
