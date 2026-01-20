@@ -73,9 +73,13 @@
 
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Full Name</label>
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                                id="name" name="name" placeholder="Enter full name"
-                                                value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                            <div class="form-icon right">
+                                                <input type="text"
+                                                    class="form-control form-control-icon @error('name') is-invalid @enderror"
+                                                    id="name" name="name" placeholder="Masukan nama lengkap"
+                                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                <i class="ri-user-line"></i>
+                                            </div>
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -85,10 +89,13 @@
 
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email"
-                                                class="form-control @error('email') is-invalid @enderror" id="email"
-                                                name="email" placeholder="Enter email address"
-                                                value="{{ old('email') }}" required autocomplete="email">
+                                            <div class="form-icon right">
+                                                <input type="email"
+                                                    class="form-control form-control-icon @error('email') is-invalid @enderror"
+                                                    id="email" name="email" placeholder="Masukan alamat email"
+                                                    value="{{ old('email') }}" required autocomplete="email">
+                                                <i class="ri-mail-line"></i>
+                                            </div>
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -101,7 +108,7 @@
                                             <div class="position-relative auth-pass-inputgroup">
                                                 <input type="password"
                                                     class="form-control pe-5 password-input @error('password') is-invalid @enderror"
-                                                    onpaste="return false" placeholder="Enter password"
+                                                    onpaste="return false" placeholder="Masukan password"
                                                     id="password-input" name="password" required
                                                     autocomplete="new-password">
                                                 <button
@@ -120,7 +127,7 @@
                                             <label class="form-label" for="password-confirm">Confirm Password</label>
                                             <div class="position-relative auth-pass-inputgroup">
                                                 <input type="password" class="form-control pe-5 password-input"
-                                                    onpaste="return false" placeholder="Confirm password"
+                                                    onpaste="return false" placeholder="Konfirmasi password"
                                                     id="password-confirm" name="password_confirmation" required
                                                     autocomplete="new-password">
                                             </div>
@@ -134,7 +141,9 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign Up</button>
+                                            <button class="btn btn-success w-100" type="submit">
+                                                <i class="ri-user-add-line align-middle me-1"></i> Sign Up
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

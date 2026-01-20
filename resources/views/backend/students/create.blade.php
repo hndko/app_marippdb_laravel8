@@ -29,25 +29,41 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="full_name" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="full_name" name="full_name" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="full_name"
+                                        name="full_name" placeholder="Masukkan nama lengkap" required>
+                                    <i class="ri-user-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="nisn" class="form-label">NISN</label>
-                                <input type="text" class="form-control" id="nisn" name="nisn" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="nisn" name="nisn"
+                                        placeholder="Nomor NISN" required>
+                                    <i class="ri-id-card-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="nik" name="nik"
+                                        placeholder="Nomor NIK" required>
+                                    <i class="ri-id-card-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="phone" class="form-label">No. Telepon</label>
-                                <input type="text" class="form-control" id="phone" name="phone">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="phone" name="phone"
+                                        placeholder="Contoh: 08123456789">
+                                    <i class="ri-phone-line"></i>
+                                </div>
                             </div>
                         </div>
 
@@ -63,13 +79,21 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="birth_place" class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="birth_place" name="birth_place" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="birth_place"
+                                        name="birth_place" placeholder="Kota Lahir" required>
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="birth_date" class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="birth_date" name="birth_date" required>
+                                <div class="form-icon right">
+                                    <input type="date" class="form-control form-control-icon" id="birth_date"
+                                        name="birth_date" required>
+                                    <i class="ri-calendar-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
@@ -89,15 +113,21 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="school_origin" class="form-label">Sekolah Asal</label>
-                                <input type="text" class="form-control" id="school_origin" name="school_origin"
-                                    required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="school_origin"
+                                        name="school_origin" placeholder="Nama Sekolah Asal" required>
+                                    <i class="ri-building-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="graduation_year" class="form-label">Tahun Lulus</label>
-                                <input type="number" class="form-control" id="graduation_year" name="graduation_year"
-                                    required>
+                                <div class="form-icon right">
+                                    <input type="number" class="form-control form-control-icon" id="graduation_year"
+                                        name="graduation_year" placeholder="Contoh: 2024" required>
+                                    <i class="ri-calendar-event-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
@@ -115,7 +145,8 @@
                         <div class="col-lg-12">
                             <div>
                                 <label for="address" class="form-label">Alamat Lengkap</label>
-                                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                                <textarea class="form-control" id="address" name="address" rows="3"
+                                    placeholder="Alamat lengkap calon siswa..." required></textarea>
                             </div>
                         </div>
 
@@ -129,25 +160,41 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_name" class="form-label">Nama Ayah</label>
-                                <input type="text" class="form-control" id="father_name" name="father_name" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="father_name"
+                                        name="father_name" placeholder="Nama Ayah" required>
+                                    <i class="ri-user-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_nik" class="form-label">NIK Ayah</label>
-                                <input type="text" class="form-control" id="father_nik" name="father_nik" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="father_nik"
+                                        name="father_nik" placeholder="NIK Ayah" required>
+                                    <i class="ri-id-card-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_job" class="form-label">Pekerjaan Ayah</label>
-                                <input type="text" class="form-control" id="father_job" name="father_job" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="father_job"
+                                        name="father_job" placeholder="Pekerjaan Ayah" required>
+                                    <i class="ri-briefcase-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="father_phone" class="form-label">No. HP Ayah</label>
-                                <input type="text" class="form-control" id="father_phone" name="father_phone">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="father_phone"
+                                        name="father_phone" placeholder="Nomor Handphone">
+                                    <i class="ri-phone-line"></i>
+                                </div>
                             </div>
                         </div>
 
@@ -155,32 +202,52 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_name" class="form-label">Nama Ibu</label>
-                                <input type="text" class="form-control" id="mother_name" name="mother_name" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="mother_name"
+                                        name="mother_name" placeholder="Nama Ibu" required>
+                                    <i class="ri-user-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_nik" class="form-label">NIK Ibu</label>
-                                <input type="text" class="form-control" id="mother_nik" name="mother_nik" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="mother_nik"
+                                        name="mother_nik" placeholder="NIK Ibu" required>
+                                    <i class="ri-id-card-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_job" class="form-label">Pekerjaan Ibu</label>
-                                <input type="text" class="form-control" id="mother_job" name="mother_job" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="mother_job"
+                                        name="mother_job" placeholder="Pekerjaan Ibu" required>
+                                    <i class="ri-briefcase-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="mother_phone" class="form-label">No. HP Ibu</label>
-                                <input type="text" class="form-control" id="mother_phone" name="mother_phone">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="mother_phone"
+                                        name="mother_phone" placeholder="Nomor Handphone">
+                                    <i class="ri-phone-line"></i>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="guardian_name" class="form-label">Nama Wali (Opsional)</label>
-                                <input type="text" class="form-control" id="guardian_name" name="guardian_name">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="guardian_name"
+                                        name="guardian_name" placeholder="Nama Wali">
+                                    <i class="ri-user-star-line"></i>
+                                </div>
                             </div>
                         </div>
 
@@ -210,8 +277,12 @@
 
 
                         <div class="col-lg-12 mt-3">
-                            <button type="submit" class="btn btn-primary">Simpan Data</button>
-                            <a href="{{ route('students.index') }}" class="btn btn-light">Batal</a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="ri-save-line align-bottom me-1"></i> Simpan Data
+                            </button>
+                            <a href="{{ route('students.index') }}" class="btn btn-light">
+                                <i class="ri-arrow-left-line align-bottom me-1"></i> Batal
+                            </a>
                         </div>
                     </div>
                 </form>

@@ -36,22 +36,22 @@
                     <ul class="nav nav-pills nav-custom nav-custom-light mb-3" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#general" role="tab">
-                                Umum
+                                <i class="ri-settings-3-line align-middle me-1"></i> Umum
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#contact" role="tab">
-                                Kontak
+                                <i class="ri-phone-line align-middle me-1"></i> Kontak
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#ppdb" role="tab">
-                                PPDB
+                                <i class="ri-school-line align-middle me-1"></i> PPDB
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#social" role="tab">
-                                Sosial Media
+                                <i class="ri-share-line align-middle me-1"></i> Sosial Media
                             </a>
                         </li>
                     </ul>
@@ -62,18 +62,26 @@
                         <div class="tab-pane active" id="general" role="tabpanel">
                             <div class="mb-3">
                                 <label for="app_name" class="form-label">Nama Aplikasi</label>
-                                <input type="text" class="form-control" id="app_name" name="app_name"
-                                    value="{{ $settings['app_name'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="app_name"
+                                        name="app_name" value="{{ $settings['app_name'] ?? '' }}"
+                                        placeholder="Masukkan nama aplikasi">
+                                    <i class="ri-apps-2-line"></i>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="app_shortname" class="form-label">Singkatan Aplikasi (Shortname)</label>
-                                <input type="text" class="form-control" id="app_shortname" name="app_shortname"
-                                    value="{{ $settings['app_shortname'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="app_shortname"
+                                        name="app_shortname" value="{{ $settings['app_shortname'] ?? '' }}"
+                                        placeholder="Singkatan, misal: MP">
+                                    <i class="ri-text"></i>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="app_description" class="form-label">Deskripsi Aplikasi</label>
-                                <textarea class="form-control" id="app_description" name="app_description"
-                                    rows="3">{{ $settings['app_description'] ?? '' }}</textarea>
+                                <textarea class="form-control" id="app_description" name="app_description" rows="3"
+                                    placeholder="Deskripsi singkat aplikasi...">{{ $settings['app_description'] ?? '' }}</textarea>
                             </div>
                         </div>
 
@@ -81,18 +89,26 @@
                         <div class="tab-pane" id="contact" role="tabpanel">
                             <div class="mb-3">
                                 <label for="school_phone" class="form-label">Nomor Telepon</label>
-                                <input type="text" class="form-control" id="school_phone" name="school_phone"
-                                    value="{{ $settings['school_phone'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="school_phone"
+                                        name="school_phone" value="{{ $settings['school_phone'] ?? '' }}"
+                                        placeholder="Contoh: 021-1234567">
+                                    <i class="ri-phone-line"></i>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="school_email" class="form-label">Email Sekolah</label>
-                                <input type="email" class="form-control" id="school_email" name="school_email"
-                                    value="{{ $settings['school_email'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="email" class="form-control form-control-icon" id="school_email"
+                                        name="school_email" value="{{ $settings['school_email'] ?? '' }}"
+                                        placeholder="email@sekolah.sch.id">
+                                    <i class="ri-mail-line"></i>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="school_address" class="form-label">Alamat Sekolah</label>
-                                <textarea class="form-control" id="school_address" name="school_address"
-                                    rows="3">{{ $settings['school_address'] ?? '' }}</textarea>
+                                <textarea class="form-control" id="school_address" name="school_address" rows="3"
+                                    placeholder="Alamat lengkap sekolah...">{{ $settings['school_address'] ?? '' }}</textarea>
                             </div>
                         </div>
 
@@ -102,21 +118,30 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="registration_start_date" class="form-label">Tanggal Mulai
                                         Pendaftaran</label>
-                                    <input type="date" class="form-control" id="registration_start_date"
-                                        name="registration_start_date"
-                                        value="{{ $settings['registration_start_date'] ?? '' }}">
+                                    <div class="form-icon right">
+                                        <input type="date" class="form-control form-control-icon"
+                                            id="registration_start_date" name="registration_start_date"
+                                            value="{{ $settings['registration_start_date'] ?? '' }}">
+                                        <i class="ri-calendar-line"></i>
+                                    </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="registration_end_date" class="form-label">Tanggal Akhir
                                         Pendaftaran</label>
-                                    <input type="date" class="form-control" id="registration_end_date"
-                                        name="registration_end_date"
-                                        value="{{ $settings['registration_end_date'] ?? '' }}">
+                                    <div class="form-icon right">
+                                        <input type="date" class="form-control form-control-icon"
+                                            id="registration_end_date" name="registration_end_date"
+                                            value="{{ $settings['registration_end_date'] ?? '' }}">
+                                        <i class="ri-calendar-line"></i>
+                                    </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="announcement_date" class="form-label">Tanggal Pengumuman</label>
-                                    <input type="date" class="form-control" id="announcement_date"
-                                        name="announcement_date" value="{{ $settings['announcement_date'] ?? '' }}">
+                                    <div class="form-icon right">
+                                        <input type="date" class="form-control form-control-icon" id="announcement_date"
+                                            name="announcement_date" value="{{ $settings['announcement_date'] ?? '' }}">
+                                        <i class="ri-calendar-check-line"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,18 +150,30 @@
                         <div class="tab-pane" id="social" role="tabpanel">
                             <div class="mb-3">
                                 <label for="social_facebook" class="form-label">Facebook URL</label>
-                                <input type="url" class="form-control" id="social_facebook" name="social_facebook"
-                                    value="{{ $settings['social_facebook'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="url" class="form-control form-control-icon" id="social_facebook"
+                                        name="social_facebook" value="{{ $settings['social_facebook'] ?? '' }}"
+                                        placeholder="https://facebook.com/...">
+                                    <i class="ri-facebook-fill"></i>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="social_instagram" class="form-label">Instagram URL</label>
-                                <input type="url" class="form-control" id="social_instagram" name="social_instagram"
-                                    value="{{ $settings['social_instagram'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="url" class="form-control form-control-icon" id="social_instagram"
+                                        name="social_instagram" value="{{ $settings['social_instagram'] ?? '' }}"
+                                        placeholder="https://instagram.com/...">
+                                    <i class="ri-instagram-fill"></i>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="social_twitter" class="form-label">Twitter/X URL</label>
-                                <input type="url" class="form-control" id="social_twitter" name="social_twitter"
-                                    value="{{ $settings['social_twitter'] ?? '' }}">
+                                <div class="form-icon right">
+                                    <input type="url" class="form-control form-control-icon" id="social_twitter"
+                                        name="social_twitter" value="{{ $settings['social_twitter'] ?? '' }}"
+                                        placeholder="https://twitter.com/...">
+                                    <i class="ri-twitter-x-fill"></i>
+                                </div>
                             </div>
                         </div>
                     </div>

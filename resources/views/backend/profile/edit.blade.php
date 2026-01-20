@@ -47,15 +47,23 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    value="{{ old('name', $user->name) }}" required>
+                                <div class="form-icon right">
+                                    <input type="text" class="form-control form-control-icon" id="name" name="name"
+                                        value="{{ old('name', $user->name) }}" placeholder="Masukkan nama lengkap"
+                                        required>
+                                    <i class="ri-user-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ old('email', $user->email) }}" required>
+                                <div class="form-icon right">
+                                    <input type="email" class="form-control form-control-icon" id="email" name="email"
+                                        value="{{ old('email', $user->email) }}" placeholder="Masukkan alamat email"
+                                        required>
+                                    <i class="ri-mail-line"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,29 +75,42 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="current_password" class="form-label">Password Lama</label>
-                                <input type="password" class="form-control" id="current_password"
-                                    name="current_password">
+                                <div class="form-icon right">
+                                    <input type="password" class="form-control form-control-icon" id="current_password"
+                                        name="current_password" placeholder="Masukkan password lama">
+                                    <i class="ri-lock-unlock-line"></i>
+                                </div>
                                 <small class="text-muted">Diperlukan jika mengganti password.</small>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="new_password" class="form-label">Password Baru</label>
-                                <input type="password" class="form-control" id="new_password" name="new_password">
+                                <div class="form-icon right">
+                                    <input type="password" class="form-control form-control-icon" id="new_password"
+                                        name="new_password" placeholder="Masukkan password baru">
+                                    <i class="ri-lock-password-line"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="new_password_confirmation" class="form-label">Konfirmasi Password
                                     Baru</label>
-                                <input type="password" class="form-control" id="new_password_confirmation"
-                                    name="new_password_confirmation">
+                                <div class="form-icon right">
+                                    <input type="password" class="form-control form-control-icon"
+                                        id="new_password_confirmation" name="new_password_confirmation"
+                                        placeholder="Ulangi password baru">
+                                    <i class="ri-lock-password-fill"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="ri-save-line align-middle me-1"></i> Simpan Perubahan
+                        </button>
                     </div>
                 </form>
             </div>

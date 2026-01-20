@@ -25,13 +25,17 @@
                     @method('PUT')
                     <div class="mb-3">
                         <label for="title" class="form-label">Judul Pengumuman</label>
-                        <input type="text" class="form-control" id="title" name="title"
-                            value="{{ $announcement->title }}" required>
+                        <div class="form-icon right">
+                            <input type="text" class="form-control form-control-icon" id="title" name="title"
+                                value="{{ $announcement->title }}" placeholder="Masukkan judul pengumuman" required>
+                            <i class="ri-file-text-line"></i>
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="content" class="form-label">Isi Pengumuman</label>
                         <textarea class="form-control" id="content" name="content" rows="5"
+                            placeholder="Tulis isi pengumuman di sini..."
                             required>{{ $announcement->content }}</textarea>
                     </div>
 
@@ -56,8 +60,12 @@
                     </div>
 
                     <div class="text-end">
-                        <a href="{{ route('announcements.index') }}" class="btn btn-light">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Update Pengumuman</button>
+                        <a href="{{ route('announcements.index') }}" class="btn btn-light">
+                            <i class="ri-arrow-left-line align-bottom me-1"></i> Kembali
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="ri-save-line align-bottom me-1"></i> Update Pengumuman
+                        </button>
                     </div>
                 </form>
             </div>

@@ -73,10 +73,13 @@
 
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email"
-                                                class="form-control @error('email') is-invalid @enderror" id="email"
-                                                name="email" placeholder="Enter email" value="{{ old('email') }}"
-                                                required autocomplete="email" autofocus>
+                                            <div class="form-icon right">
+                                                <input type="email"
+                                                    class="form-control form-control-icon @error('email') is-invalid @enderror"
+                                                    id="email" name="email" placeholder="Masukan email anda"
+                                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                <i class="ri-mail-line"></i>
+                                            </div>
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -95,8 +98,8 @@
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input type="password"
                                                     class="form-control pe-5 password-input @error('password') is-invalid @enderror"
-                                                    placeholder="Enter password" id="password-input" name="password"
-                                                    required autocomplete="current-password">
+                                                    placeholder="Masukan password anda" id="password-input"
+                                                    name="password" required autocomplete="current-password">
                                                 <button
                                                     class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                     type="button" id="password-addon"><i
@@ -113,11 +116,14 @@
                                             <input class="form-check-input" type="checkbox" name="remember"
                                                 id="auth-remember-check" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="form-check-label" for="auth-remember-check">Remember
-                                                me</label>
+                                                <label class="form-check-label" for="auth-remember-check">Remember
+                                                    me</label>
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                            <button class="btn btn-success w-100" type="submit">
+                                                <i class="ri-login-circle-line align-middle me-1"></i> Sign In
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
