@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RegistrationController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Show the registration form.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -22,11 +24,17 @@ class RegistrationController extends Controller
             return redirect()->route('home')->with('error', 'Acces Denied. Only students can access this page.');
         }
 
-        $student = $user->student; // Assuming hasOne relationship in User model
+        $data['student'] = $user->student;
 
-        return view('backend.registration.index', compact('student'));
+        return view('backend.registration.index', $data);
     }
 
+    /**
+     * Store the registration data.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -111,20 +119,28 @@ class RegistrationController extends Controller
 
         // Handle File Uploads
         $fileTypes = ['foto', 'kk', 'akta', 'ijazah'];
+        $disk = Storage::disk('public');
+
         foreach ($fileTypes as $type) {
             if ($request->hasFile($type)) {
                 $file = $request->file($type);
                 $originalName = $file->getClientOriginalName();
                 $filename = time() . '_' . $type . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('uploads/' . $student->id, $filename, 'public');
 
-                $student->files()->updateOrCreate(
-                    ['file_type' => $type],
-                    [
-                        'file_path' => $path,
-                        'original_name' => $originalName,
-                    ]
-                );
+                // Use Storage facade to put file
+                $path = 'uploads/' . $student->id . '/' . $filename;
+                $disk->put($path, file_get_contents($file));
+
+                // Check if file exists to avoid db null reference (though put should succeed)
+                if ($disk->exists($path)) {
+                    $student->files()->updateOrCreate(
+                        ['file_type' => $type],
+                        [
+                            'file_path' => $path,
+                            'original_name' => $originalName,
+                        ]
+                    );
+                }
             }
         }
 

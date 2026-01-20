@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,8 +17,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::latest()->get();
-        return view('backend.announcements.index', compact('announcements'));
+        $data['announcements'] = Announcement::latest()->get();
+        return view('backend.announcements.index', $data);
     }
 
     /**
@@ -46,9 +47,18 @@ class AnnouncementController extends Controller
 
         $slug = Str::slug($request->title);
         $imagePath = null;
+        $disk = Storage::disk('public');
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('announcements', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = 'announcements/' . $filename;
+
+            $disk->put($path, file_get_contents($file));
+
+            if ($disk->exists($path)) {
+                $imagePath = $path;
+            }
         }
 
         Announcement::create([
@@ -70,7 +80,8 @@ class AnnouncementController extends Controller
      */
     public function edit(Announcement $announcement)
     {
-        return view('backend.announcements.edit', compact('announcement'));
+        $data['announcement'] = $announcement;
+        return view('backend.announcements.edit', $data);
     }
 
     /**
@@ -92,12 +103,23 @@ class AnnouncementController extends Controller
             $announcement->slug = Str::slug($request->title);
         }
 
+        $disk = Storage::disk('public');
+
         if ($request->hasFile('image')) {
             // Delete old image
-            if ($announcement->image) {
-                Storage::disk('public')->delete($announcement->image);
+            if ($announcement->image && $disk->exists($announcement->image)) {
+                $disk->delete($announcement->image);
             }
-            $announcement->image = $request->file('image')->store('announcements', 'public');
+
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = 'announcements/' . $filename;
+
+            $disk->put($path, file_get_contents($file));
+
+            if ($disk->exists($path)) {
+                $announcement->image = $path;
+            }
         }
 
         $announcement->title = $request->title;
@@ -116,8 +138,9 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        if ($announcement->image) {
-            Storage::disk('public')->delete($announcement->image);
+        $disk = Storage::disk('public');
+        if ($announcement->image && $disk->exists($announcement->image)) {
+            $disk->delete($announcement->image);
         }
         $announcement->delete();
 

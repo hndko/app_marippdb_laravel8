@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -15,6 +18,9 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $query = Student::query();
+
+        // Eager load relationships to prevent N+1
+        $query->with(['user', 'parents']);
 
         // Search by Name or NISN
         if ($request->has('search') && $request->search != '') {
@@ -31,9 +37,9 @@ class StudentController extends Controller
             $query->where('status', $request->status);
         }
 
-        $students = $query->latest()->get();
+        $data['students'] = $query->latest()->get();
 
-        return view('backend.students.index', compact('students'));
+        return view('backend.students.index', $data);
     }
 
     /**
@@ -78,7 +84,7 @@ class StudentController extends Controller
         ]);
 
         // Create User
-        $user = \App\Models\User::create([
+        $user = User::create([
             'name' => $request->full_name,
             'email' => $request->nisn . '@student.com', // Dummy email based on NISN
             'password' => bcrypt('password'), // Default password
@@ -119,18 +125,25 @@ class StudentController extends Controller
 
         // Handle File Uploads
         $fileTypes = ['foto', 'kk', 'akta', 'ijazah'];
+        $disk = Storage::disk('public');
+
         foreach ($fileTypes as $type) {
             if ($request->hasFile($type)) {
                 $file = $request->file($type);
                 $originalName = $file->getClientOriginalName();
                 $filename = time() . '_' . $type . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('uploads/' . $student->id, $filename, 'public');
 
-                $student->files()->create([
-                    'file_type' => $type,
-                    'file_path' => $path,
-                    'original_name' => $originalName,
-                ]);
+                // Use Storage facade
+                $path = 'uploads/' . $student->id . '/' . $filename;
+                $disk->put($path, file_get_contents($file));
+
+                if ($disk->exists($path)) {
+                    $student->files()->create([
+                        'file_type' => $type,
+                        'file_path' => $path,
+                        'original_name' => $originalName,
+                    ]);
+                }
             }
         }
 
@@ -145,7 +158,8 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('backend.students.show', compact('student'));
+        $data['student'] = $student->load(['user', 'parents', 'files']);
+        return view('backend.students.show', $data);
     }
 
     /**
@@ -156,7 +170,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('backend.students.edit', compact('student'));
+        // Eager load for edit view if needed
+        $data['student'] = $student->load(['parents']);
+        return view('backend.students.edit', $data);
     }
 
     /**
@@ -231,20 +247,27 @@ class StudentController extends Controller
 
         // Handle File Uploads
         $fileTypes = ['foto', 'kk', 'akta', 'ijazah'];
+        $disk = Storage::disk('public');
+
         foreach ($fileTypes as $type) {
             if ($request->hasFile($type)) {
                 $file = $request->file($type);
                 $originalName = $file->getClientOriginalName();
                 $filename = time() . '_' . $type . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('uploads/' . $student->id, $filename, 'public');
 
-                $student->files()->updateOrCreate(
-                    ['file_type' => $type],
-                    [
-                        'file_path' => $path,
-                        'original_name' => $originalName,
-                    ]
-                );
+                // Use Storage facade
+                $path = 'uploads/' . $student->id . '/' . $filename;
+                $disk->put($path, file_get_contents($file));
+
+                if ($disk->exists($path)) {
+                    $student->files()->updateOrCreate(
+                        ['file_type' => $type],
+                        [
+                            'file_path' => $path,
+                            'original_name' => $originalName,
+                        ]
+                    );
+                }
             }
         }
 
@@ -259,6 +282,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        // Ideally we should delete files too here using Storage::delete()
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus.');
     }

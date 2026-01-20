@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ResultController extends Controller
@@ -20,13 +21,13 @@ class ResultController extends Controller
             return redirect()->route('home')->with('error', 'Hanya siswa yang dapat melihat hasil kelulusan.');
         }
 
-        $student = $user->student;
+        $data['student'] = $user->student;
 
         // If student data not found yet
-        if (!$student) {
+        if (!$data['student']) {
             return redirect()->route('registration.index')->with('error', 'Silakan lengkapi pendaftaran terlebih dahulu.');
         }
 
-        return view('backend.announcement.index', compact('student'));
+        return view('backend.announcement.index', $data);
     }
 }

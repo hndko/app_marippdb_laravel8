@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
 
@@ -9,10 +10,10 @@ class ValidationController extends Controller
 {
     public function index()
     {
-        $students = Student::where('status', 'pending')
+        $data['students'] = Student::where('status', 'pending')
             ->latest()
             ->paginate(9);
 
-        return view('backend.verification.index', compact('students'));
+        return view('backend.verification.index', $data);
     }
 }

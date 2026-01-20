@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 
@@ -10,15 +11,15 @@ class SettingController extends Controller
     public function index()
     {
         // Fetch all settings and pluck key-value pairs
-        $settings = Setting::all()->pluck('value', 'key')->toArray();
-        return view('backend.settings.index', compact('settings'));
+        $data['settings'] = Setting::all()->pluck('value', 'key')->toArray();
+        return view('backend.settings.index', $data);
     }
 
     public function update(Request $request)
     {
-        $data = $request->except('_token');
+        $settings = $request->except('_token');
 
-        foreach ($data as $key => $value) {
+        foreach ($settings as $key => $value) {
             Setting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]

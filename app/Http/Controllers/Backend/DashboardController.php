@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,10 +29,10 @@ class HomeController extends Controller
         // $pending_students = \App\Models\Student::where('status', 'pending')->count();
 
         // Using 0 for now until migration runs
-        $total_students = 0;
-        $verified_students = 0;
-        $pending_students = 0;
+        $data['total_students'] = 0;
+        $data['verified_students'] = 0;
+        $data['pending_students'] = 0;
 
-        return view('backend.dashboard', compact('total_students', 'verified_students', 'pending_students'));
+        return view('backend.dashboard', $data);
     }
 }
