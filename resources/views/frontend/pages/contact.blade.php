@@ -63,5 +63,68 @@
             </div>
         </div>
     </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <div class="card border shadow-none">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">Kirim Pesan</h4>
+                </div>
+                <div class="card-body">
+                    @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
+                    <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="name" name="name" required
+                                placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required
+                                placeholder="email@contoh.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subjek</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required
+                                placeholder="Judul pesan">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Pesan</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required
+                                placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary"><i
+                                    class="ri-send-plane-fill align-middle me-1"></i> Kirim Pesan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border shadow-none h-100">
+                <div class="card-body p-0">
+                    @if(isset($settings['google_maps_embed']) && !empty($settings['google_maps_embed']))
+                    <div class="ratio ratio-16x9 h-100">
+                        <iframe src="{{ $settings['google_maps_embed'] }}" style="border:0;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    @else
+                    <div class="d-flex align-items-center justify-content-center h-100 bg-light rounded">
+                        <p class="text-muted">Peta belum dikonfigurasi.</p>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </section>
 @endsection

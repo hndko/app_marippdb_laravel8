@@ -55,6 +55,20 @@ class LandingController extends Controller
         return view('frontend.pages.contact', $data);
     }
 
+    public function contactStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        \App\Models\ContactMessage::create($request->all());
+
+        return redirect()->back()->with('success', 'Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+    }
+
     public function team()
     {
         $data = $this->getCommonData();

@@ -74,8 +74,8 @@
                                 href="{{ url('/tim') }}">Tim</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-15 {{ request()->is('kontak') ? 'active' : '' }}"
-                                href="{{ url('/kontak') }}">Kontak</a>
+                            <a class="nav-link fs-15 {{ request()->routeIs('contact') ? 'active' : '' }}"
+                                href="{{ route('contact') }}">Kontak</a>
                         </li>
                     </ul>
 
@@ -128,7 +128,7 @@
                                         <li><a href="{{ url('/') }}">Beranda</a></li>
                                         <li><a href="{{ url('/layanan') }}">Layanan</a></li>
                                         <li><a href="{{ url('/fitur') }}">Fitur</a></li>
-                                        <li><a href="{{ url('/kontak') }}">Kontak</a></li>
+                                        <li><a href="{{ route('contact') }}">Kontak</a></li>
                                     </ul>
                                 </div>
                             </div>

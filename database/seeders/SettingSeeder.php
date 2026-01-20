@@ -28,6 +28,7 @@ class SettingSeeder extends Seeder
             ['key' => 'social_facebook', 'value' => '#'],
             ['key' => 'social_instagram', 'value' => '#'],
             ['key' => 'social_twitter', 'value' => '#'],
+            ['key' => 'google_maps_embed', 'value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.452622763567!2d106.81666631476906!3d-6.203875995509373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f6a2e4a2b135%3A0x6b4f7e2c9e8d1b0!2sMonas!5e0!3m2!1sen!2sid!4v1645000000000!5m2!1sen!2sid'],
         ];
 
         foreach ($settings as $setting) {

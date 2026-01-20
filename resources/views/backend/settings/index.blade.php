@@ -110,6 +110,13 @@
                                 <textarea class="form-control" id="school_address" name="school_address" rows="3"
                                     placeholder="Alamat lengkap sekolah...">{{ $settings['school_address'] ?? '' }}</textarea>
                             </div>
+                            <div class="mb-3">
+                                <label for="google_maps_embed" class="form-label">Google Maps Embed URL (SRC)</label>
+                                <textarea class="form-control" id="google_maps_embed" name="google_maps_embed" rows="3"
+                                    placeholder="Paste link dari src='...' iframe Google Maps di sini">{{ $settings['google_maps_embed'] ?? '' }}</textarea>
+                                <div class="form-text">Buka Google Maps -> Share -> Embed a map -> Copy HTML. Ambil
+                                    hanya bagian <code>src="..."</code> nya saja.</div>
+                            </div>
                         </div>
 
                         <!-- PPDB TAB -->

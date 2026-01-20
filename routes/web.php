@@ -19,7 +19,8 @@ Route::get('/', [App\Http\Controllers\Frontend\LandingController::class, 'index'
 Route::get('/layanan', [App\Http\Controllers\Frontend\LandingController::class, 'services'])->name('landing.services');
 Route::get('/fitur', [App\Http\Controllers\Frontend\LandingController::class, 'features'])->name('landing.features');
 Route::get('/jadwal', [App\Http\Controllers\Frontend\LandingController::class, 'schedules'])->name('landing.schedules');
-Route::get('/kontak', [App\Http\Controllers\Frontend\LandingController::class, 'contact'])->name('landing.contact');
+Route::get('/hubungi-kami', [App\Http\Controllers\Frontend\LandingController::class, 'contact'])->name('contact');
+Route::post('/hubungi-kami', [App\Http\Controllers\Frontend\LandingController::class, 'contactStore'])->name('contact.store');
 Route::get('/tim', [App\Http\Controllers\Frontend\LandingController::class, 'team'])->name('landing.team');
 Route::get('/testimoni', [App\Http\Controllers\Frontend\LandingController::class, 'testimonials'])->name('landing.testimonials');
 
@@ -192,6 +193,13 @@ Route::middleware(['auth'])->group(function () {
 
         // NOTE: Delete team
         Route::delete('/{id}', [App\Http\Controllers\Backend\TeamController::class, 'destroy'])->name('destroy');
+    });
+
+    // --- Contact Messages Routes (Admin Only) ---
+    Route::middleware(['role:admin'])->prefix('contact-messages')->name('contact-messages.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Backend\ContactMessageController::class, 'index'])->name('index');
+        Route::get('/{id}', [App\Http\Controllers\Backend\ContactMessageController::class, 'show'])->name('show');
+        Route::delete('/{id}', [App\Http\Controllers\Backend\ContactMessageController::class, 'destroy'])->name('destroy');
     });
 
     // --- Profile Routes ---
