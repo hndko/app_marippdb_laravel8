@@ -30,7 +30,7 @@
 
 ## 🛠 Teknologi yang Digunakan
 
-- **Backend**: [Laravel 12](https://laravel.com) (PHP Framework)
+- **Backend**: [Laravel 8](https://laravel.com) (PHP Framework)
 - **Frontend**: Blade Templating, Bootstrap 5, Custom CSS
 - **Database**: MySQL
 - **Assets**:
@@ -45,15 +45,14 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi di lingkungan lokal And
 1.  **Clone Repository**
 
     ```bash
-    git clone https://github.com/username/mari-ppdb.git
-    cd mari-ppdb
+    git clone https://github.com/username/app_marippdb_laravel8.git
+    cd app_marippdb_laravel8
     ```
 
 2.  **Install Dependensi**
 
     ```bash
     composer install
-    npm install && npm run build
     ```
 
 3.  **Konfigurasi Environment**
@@ -81,7 +80,7 @@ Ikuti langkah-langkah berikut untuk menjalankan aplikasi di lingkungan lokal And
     ```bash
     php artisan serve
     ```
-    Akses aplikasi melalui browser di `http://localhost:8000`.
+    Akses aplikasi melalui browser di `http://127.0.0.1:8000`.
 
 ## 🤝 Kontribusi & Laporan Bug
 
@@ -108,5 +107,5 @@ Proyek ini bersifat open-source dan dilisensikan di bawah [MIT license](https://
 ---
 
 <p align="center">
-    Dibuat dengan ❤️ oleh Tim Pengembang Mari PPDB
+    Dibuat dengan ❤️ oleh Tim Pengembang Mari PPDB x Mari Partner
 </p>
