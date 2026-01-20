@@ -190,6 +190,18 @@
                                 <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('features.*') ? 'active' : '' }}"
+                                href="{{ route('features.index') }}">
+                                <i class="ri-pages-line"></i> <span data-key="t-features">Fitur Landing</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}"
+                                href="{{ route('services.index') }}">
+                                <i class="ri-service-line"></i> <span data-key="t-services">Layanan Landing</span>
+                            </a>
+                        </li>
                         @endif
                         @endif
 

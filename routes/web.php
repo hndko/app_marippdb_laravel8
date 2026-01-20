@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// NOTE: Landing Page Route - Public access
+// NOTE: Landing Page Routes - Public access
 Route::get('/', [App\Http\Controllers\Frontend\LandingController::class, 'index'])->name('landing');
+Route::get('/layanan', [App\Http\Controllers\Frontend\LandingController::class, 'services'])->name('landing.services');
+Route::get('/fitur', [App\Http\Controllers\Frontend\LandingController::class, 'features'])->name('landing.features');
+Route::get('/jadwal', [App\Http\Controllers\Frontend\LandingController::class, 'schedules'])->name('landing.schedules');
+Route::get('/kontak', [App\Http\Controllers\Frontend\LandingController::class, 'contact'])->name('landing.contact');
+Route::get('/tim', [App\Http\Controllers\Frontend\LandingController::class, 'team'])->name('landing.team');
+Route::get('/testimoni', [App\Http\Controllers\Frontend\LandingController::class, 'testimonials'])->name('landing.testimonials');
 
 // NOTE: Authentication Routes - Provided by UI scaffolding
 Auth::routes();
@@ -100,9 +106,50 @@ Route::middleware(['auth'])->group(function () {
 
         // NOTE: Update announcement
         Route::put('/{id}', [App\Http\Controllers\Backend\AnnouncementController::class, 'update'])->name('update');
-
         // NOTE: Delete announcement
         Route::delete('/{id}', [App\Http\Controllers\Backend\AnnouncementController::class, 'destroy'])->name('destroy');
+    });
+
+    // --- Features Routes (Admin Only) ---
+    Route::middleware(['role:admin'])->prefix('features')->name('features.')->group(function () {
+        // NOTE: Display list of features
+        Route::get('/', [App\Http\Controllers\Backend\FeatureController::class, 'index'])->name('index');
+
+        // NOTE: Show form to create new feature
+        Route::get('/create', [App\Http\Controllers\Backend\FeatureController::class, 'create'])->name('create');
+
+        // NOTE: Store new feature
+        Route::post('/', [App\Http\Controllers\Backend\FeatureController::class, 'store'])->name('store');
+
+        // NOTE: Show form to edit feature
+        Route::get('/{id}/edit', [App\Http\Controllers\Backend\FeatureController::class, 'edit'])->name('edit');
+
+        // NOTE: Update feature
+        Route::put('/{id}', [App\Http\Controllers\Backend\FeatureController::class, 'update'])->name('update');
+
+        // NOTE: Delete feature
+        Route::delete('/{id}', [App\Http\Controllers\Backend\FeatureController::class, 'destroy'])->name('destroy');
+    });
+
+    // --- Services Routes (Admin Only) ---
+    Route::middleware(['role:admin'])->prefix('services')->name('services.')->group(function () {
+        // NOTE: Display list of services
+        Route::get('/', [App\Http\Controllers\Backend\ServiceController::class, 'index'])->name('index');
+
+        // NOTE: Show form to create new service
+        Route::get('/create', [App\Http\Controllers\Backend\ServiceController::class, 'create'])->name('create');
+
+        // NOTE: Store new service
+        Route::post('/', [App\Http\Controllers\Backend\ServiceController::class, 'store'])->name('store');
+
+        // NOTE: Show form to edit service
+        Route::get('/{id}/edit', [App\Http\Controllers\Backend\ServiceController::class, 'edit'])->name('edit');
+
+        // NOTE: Update service
+        Route::put('/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'update'])->name('update');
+
+        // NOTE: Delete service
+        Route::delete('/{id}', [App\Http\Controllers\Backend\ServiceController::class, 'destroy'])->name('destroy');
     });
 
     // --- Profile Routes ---
