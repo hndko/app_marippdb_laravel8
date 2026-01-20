@@ -176,11 +176,14 @@
                                 <i class="ri-shield-check-line"></i> <span data-key="t-verification">Verifikasi</span>
                             </a>
                         </li>
+                        @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link {{ request()->routeIs('settings.index') ? 'active' : '' }}"
+                                href="{{ route('settings.index') }}">
                                 <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>
                             </a>
                         </li>
+                        @endif
                         @endif
 
                         @if(Auth::check() && Auth::user()->role == 'student')

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Setting;
 
 class SettingSeeder extends Seeder
 {
@@ -15,16 +16,22 @@ class SettingSeeder extends Seeder
     public function run()
     {
         $settings = [
-            ['key' => 'school_name', 'value' => 'SMA Negeri 1 Contoh'],
-            ['key' => 'school_address', 'value' => 'Jl. Pendidikan No. 1'],
-            ['key' => 'ppdb_open_date', 'value' => '2024-06-01'],
-            ['key' => 'ppdb_close_date', 'value' => '2024-06-30'],
-            ['key' => 'quota_zonasi', 'value' => '50'],
-            ['key' => 'quota_prestasi', 'value' => '30'],
-            ['key' => 'quota_afirmasi', 'value' => '15'],
-            ['key' => 'quota_pindah_tugas', 'value' => '5'],
+            ['key' => 'app_name', 'value' => 'Mari PPDB'],
+            ['key' => 'app_shortname', 'value' => 'MP'],
+            ['key' => 'app_description', 'value' => 'Sistem Penerimaan Peserta Didik Baru Online Terpercaya.'],
+            ['key' => 'school_phone', 'value' => '081234567890'],
+            ['key' => 'school_email', 'value' => 'info@sekolah.com'],
+            ['key' => 'school_address', 'value' => 'Jl. Pendidikan No. 1, Jakarta'],
+            ['key' => 'registration_start_date', 'value' => '2024-01-01'],
+            ['key' => 'registration_end_date', 'value' => '2024-12-31'],
+            ['key' => 'announcement_date', 'value' => '2025-01-01'],
+            ['key' => 'social_facebook', 'value' => '#'],
+            ['key' => 'social_instagram', 'value' => '#'],
+            ['key' => 'social_twitter', 'value' => '#'],
         ];
 
-        DB::table('settings')->insert($settings);
+        foreach ($settings as $setting) {
+            Setting::updateOrCreate(['key' => $setting['key']], ['value' => $setting['value']]);
+        }
     }
 }
