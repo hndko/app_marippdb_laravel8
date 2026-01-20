@@ -36,8 +36,10 @@
         <nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <span class="card-logo card-logo-dark fw-bold fs-22 text-dark">Mari PPDB</span>
-                    <span class="card-logo card-logo-light fw-bold fs-22 text-white">Mari PPDB</span>
+                    <span class="card-logo card-logo-dark fw-bold fs-22 text-dark">{{ $settings['school_name'] ??
+                        config('app.name') }}</span>
+                    <span class="card-logo card-logo-light fw-bold fs-22 text-white">{{ $settings['school_name'] ??
+                        config('app.name') }}</span>
                 </a>
                 <button class="navbar-toggler py-0 fs-20 text-body" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -147,9 +149,6 @@
                             <p class="text-muted">Informasi terkini seputar PPDB</p>
                         </div>
                     </div>
-                    @php
-                    $announcements = \App\Models\Announcement::where('is_active', true)->latest()->take(3)->get();
-                    @endphp
                     @foreach($announcements as $news)
                     <div class="col-lg-4 col-md-6">
                         <div class="card shadow-none border">
@@ -339,9 +338,11 @@
                                 <h3 class="fw-bold text-white">Mari PPDB</h3>
                             </div>
                             <div class="mt-4 fs-13">
-                                <p>Sistem PPDB Online Terpercaya.</p>
-                                <p class="ff-secondary">Bergabunglah bersama kami untuk mencerdaskan kehidupan bangsa.
-                                </p>
+                                <p>{{ $settings['school_name'] ?? 'Sistem PPDB Online' }}</p>
+                                <p class="ff-secondary">{{ $settings['school_address'] ?? 'Alamat Sekolah Belum Diatur'
+                                    }}</p>
+                                <p class="ff-secondary">Email: {{ $settings['school_email'] ?? '-' }} | Telp: {{
+                                    $settings['school_phone'] ?? '-' }}</p>
                             </div>
                         </div>
                     </div>
@@ -398,41 +399,36 @@
                     <div class="col-sm-6">
                         <div class="text-sm-end mt-3 mt-sm-0">
                             <ul class="list-inline mb-0 footer-social-link">
+                                @if(!empty($settings['social_facebook']))
                                 <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                    <a href="{{ $settings['social_facebook'] }}" class="avatar-xs d-block"
+                                        target="_blank">
                                         <div class="avatar-title rounded-circle">
                                             <i class="ri-facebook-fill"></i>
                                         </div>
                                     </a>
                                 </li>
+                                @endif
+                                @if(!empty($settings['social_instagram']))
                                 <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                    <a href="{{ $settings['social_instagram'] }}" class="avatar-xs d-block"
+                                        target="_blank">
                                         <div class="avatar-title rounded-circle">
-                                            <i class="ri-github-fill"></i>
+                                            <i class="ri-instagram-fill"></i>
                                         </div>
                                     </a>
                                 </li>
+                                @endif
+                                @if(!empty($settings['social_twitter']))
                                 <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="avatar-xs d-block">
+                                    <a href="{{ $settings['social_twitter'] }}" class="avatar-xs d-block"
+                                        target="_blank">
                                         <div class="avatar-title rounded-circle">
-                                            <i class="ri-linkedin-fill"></i>
+                                            <i class="ri-twitter-x-fill"></i>
                                         </div>
                                     </a>
                                 </li>
-                                <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="avatar-xs d-block">
-                                        <div class="avatar-title rounded-circle">
-                                            <i class="ri-google-fill"></i>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="javascript: void(0);" class="avatar-xs d-block">
-                                        <div class="avatar-title rounded-circle">
-                                            <i class="ri-dribbble-line"></i>
-                                        </div>
-                                    </a>
-                                </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
