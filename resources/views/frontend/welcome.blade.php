@@ -4,16 +4,24 @@
 
 @section('content')
 <!-- start hero section -->
-<section class="section pb-0 hero-section" id="hero">
+<!-- start hero section -->
+<section class="section pb-0 hero-section" id="hero" @if(isset($settings['hero_bg_image']) &&
+    $settings['hero_bg_image'])
+    style="background-image: url('{{ Storage::url($settings['hero_bg_image']) }}'); background-size: cover; background-position: center;"
+    @endif>
     <div class="bg-overlay bg-overlay-pattern"></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-sm-10">
                 <div class="text-center mt-lg-5 pt-5">
-                    <h1 class="display-6 fw-semibold mb-3 lh-base">Selamat Datang di <span class="text-success">{{
-                            $settings['school_name'] ?? config('app.name') }}</span></h1>
-                    <p class="lead text-muted lh-base">Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2024/2025
-                        telah dibuka. Daftarkan putra-putri Anda sekarang juga.</p>
+                    <h1 class="display-6 fw-semibold mb-3 lh-base">
+                        {!! $settings['hero_title'] ?? 'Selamat Datang di <span class="text-success">' .
+                            ($settings['app_name'] ?? config('app.name')) . '</span>' !!}
+                    </h1>
+                    <p class="lead text-muted lh-base">
+                        {{ $settings['hero_subtitle'] ?? 'Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2024/2025
+                        telah dibuka. Daftarkan putra-putri Anda sekarang juga.' }}
+                    </p>
 
                     <div class="d-flex gap-2 justify-content-center mt-4">
                         <a href="{{ route('register') }}" class="btn btn-primary">Daftar Sekarang <i

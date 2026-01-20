@@ -5,10 +5,23 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>@yield('title', config('app.name') . ' - Penerimaan Peserta Didik Baru')</title>
+    <title>@yield('title', ($settings['app_name'] ?? config('app.name')) . ' - ' . ($settings['app_description'] ??
+        'Penerimaan Peserta Didik Baru'))</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Aplikasi PPDB SD/SMP/SMA/SMK" name="description" />
-    <meta content="Mari Partnet" name="author" />
+    <meta content="{{ $settings['meta_description'] ?? ($settings['app_description'] ?? 'Aplikasi PPDB') }}"
+        name="description" />
+    <meta content="{{ $settings['meta_keywords'] ?? 'ppdb, sekolah, pendaftaran' }}" name="keywords" />
+    <meta content="{{ $settings['meta_author'] ?? 'Mari Partner' }}" name="author" />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="@yield('title', $settings['app_name'] ?? config('app.name'))" />
+    <meta property="og:description"
+        content="{{ $settings['meta_description'] ?? ($settings['app_description'] ?? '') }}" />
+    <meta property="og:image"
+        content="{{ isset($settings['og_image']) ? Storage::url($settings['og_image']) : asset('assets/images/logo-sm.png') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
@@ -36,10 +49,17 @@
         <nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <span class="card-logo card-logo-dark fw-bold fs-22 text-dark">{{ $settings['school_name'] ??
+                    @if(isset($settings['app_logo']) && $settings['app_logo'])
+                    <img src="{{ Storage::url($settings['app_logo']) }}" class="card-logo card-logo-dark"
+                        alt="logo dark" height="40">
+                    <img src="{{ Storage::url($settings['app_logo']) }}" class="card-logo card-logo-light"
+                        alt="logo light" height="40">
+                    @else
+                    <span class="card-logo card-logo-dark fw-bold fs-22 text-dark">{{ $settings['app_name'] ??
                         config('app.name') }}</span>
-                    <span class="card-logo card-logo-light fw-bold fs-22 text-white">{{ $settings['school_name'] ??
+                    <span class="card-logo card-logo-light fw-bold fs-22 text-white">{{ $settings['app_name'] ??
                         config('app.name') }}</span>
+                    @endif
                 </a>
                 <button class="navbar-toggler py-0 fs-20 text-body" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -108,13 +128,17 @@
                     <div class="col-lg-4 mt-4">
                         <div>
                             <div>
-                                <span class="fw-bold fs-22 text-white">{{ $settings['school_name'] ?? config('app.name')
+                                @if(isset($settings['app_logo']) && $settings['app_logo'])
+                                <img src="{{ Storage::url($settings['app_logo']) }}" alt="logo light" height="40">
+                                @else
+                                <span class="fw-bold fs-22 text-white">{{ $settings['app_name'] ?? config('app.name')
                                     }}</span>
+                                @endif
                             </div>
                             <div class="mt-4 fs-13">
-                                <p>Sistem Informasi Penerimaan Peserta Didik Baru (PPDB) Online.</p>
-                                <p class="ff-secondary">Daftarkan diri Anda sekarang juga dan bergabunglah bersama kami.
-                                </p>
+                                <p>{{ $settings['footer_description'] ?? 'Sistem Informasi Penerimaan Peserta Didik Baru
+                                    (PPDB) Online.' }}</p>
+                                <p class="ff-secondary">{{ $settings['app_description'] ?? '' }}</p>
                             </div>
                         </div>
                     </div>
@@ -149,38 +173,29 @@
                                 <h5 class="text-white mb-0">Ikuti Kami</h5>
                                 <div class="text-muted mt-3">
                                     <ul class="list-inline">
-                                        @if(isset($settings['facebook_url']))
+                                        @if(isset($settings['social_facebook']) && $settings['social_facebook'])
                                         <li class="list-inline-item">
-                                            <a href="{{ $settings['facebook_url'] }}" class="avatar-xs d-block">
+                                            <a href="{{ $settings['social_facebook'] }}" class="avatar-xs d-block">
                                                 <div class="avatar-title rounded-circle">
                                                     <i class="ri-facebook-fill"></i>
                                                 </div>
                                             </a>
                                         </li>
                                         @endif
-                                        @if(isset($settings['instagram_url']))
+                                        @if(isset($settings['social_instagram']) && $settings['social_instagram'])
                                         <li class="list-inline-item">
-                                            <a href="{{ $settings['instagram_url'] }}" class="avatar-xs d-block">
+                                            <a href="{{ $settings['social_instagram'] }}" class="avatar-xs d-block">
                                                 <div class="avatar-title rounded-circle">
                                                     <i class="ri-instagram-fill"></i>
                                                 </div>
                                             </a>
                                         </li>
                                         @endif
-                                        @if(isset($settings['twitter_url']))
+                                        @if(isset($settings['social_twitter']) && $settings['social_twitter'])
                                         <li class="list-inline-item">
-                                            <a href="{{ $settings['twitter_url'] }}" class="avatar-xs d-block">
+                                            <a href="{{ $settings['social_twitter'] }}" class="avatar-xs d-block">
                                                 <div class="avatar-title rounded-circle">
-                                                    <i class="ri-twitter-fill"></i>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        @endif
-                                        @if(isset($settings['youtube_url']))
-                                        <li class="list-inline-item">
-                                            <a href="{{ $settings['youtube_url'] }}" class="avatar-xs d-block">
-                                                <div class="avatar-title rounded-circle">
-                                                    <i class="ri-youtube-fill"></i>
+                                                    <i class="ri-twitter-x-fill"></i>
                                                 </div>
                                             </a>
                                         </li>
@@ -198,8 +213,8 @@
                         <p class="mb-0">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> © Mari PPDB. Design & Develop by
-                            Mari Partnet
+                            </script> © {{ $settings['app_name'] ?? 'Mari PPDB' }}. Design & Develop by
+                            Mari Partner
                         </p>
                     </div>
                 </div>
