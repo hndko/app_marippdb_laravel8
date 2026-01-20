@@ -35,6 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/registration', [App\Http\Controllers\RegistrationController::class, 'index'])->name('registration.index');
     Route::post('/registration', [App\Http\Controllers\RegistrationController::class, 'store'])->name('registration.store');
 
-    // Announcement Route (for Students)
-    Route::get('/announcement', [App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcement.index');
+    // Announcement Route (News - Admin Managed)
+    Route::resource('announcements', App\Http\Controllers\AnnouncementController::class);
+
+    // Graduation Result Route (for Students)
+    Route::get('/graduation', [App\Http\Controllers\ResultController::class, 'index'])->name('graduation.index');
 });

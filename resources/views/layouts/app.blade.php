@@ -178,6 +178,12 @@
                         </li>
                         @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('announcements*') ? 'active' : '' }}"
+                                href="{{ route('announcements.index') }}">
+                                <i class="ri-megaphone-line"></i> <span data-key="t-announcements">Pengumuman</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('settings.index') ? 'active' : '' }}"
                                 href="{{ route('settings.index') }}">
                                 <i class="ri-settings-4-line"></i> <span data-key="t-settings">Pengaturan</span>

@@ -139,6 +139,34 @@
                     </div>
                 </div>
                 <!-- end row -->
+
+                <div class="row mt-5">
+                    <div class="col-lg-12">
+                        <div class="text-center mb-5">
+                            <h3 class="fw-semibold lh-base">Pengumuman Terbaru</h3>
+                            <p class="text-muted">Informasi terkini seputar PPDB</p>
+                        </div>
+                    </div>
+                    @php
+                    $announcements = \App\Models\Announcement::where('is_active', true)->latest()->take(3)->get();
+                    @endphp
+                    @foreach($announcements as $news)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card shadow-none border">
+                            @if($news->image)
+                            <img src="{{ asset('storage/' . $news->image) }}" class="card-img-top"
+                                alt="{{ $news->title }}">
+                            @endif
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $news->title }}</h5>
+                                <p class="card-text text-muted">{{ Str::limit($news->content, 100) }}</p>
+                                <p class="card-text"><small class="text-muted">{{ $news->created_at->format('d M Y')
+                                        }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
             <!-- end container -->
             <div class="position-absolute start-0 end-0 bottom-0 hero-shape-svg">
