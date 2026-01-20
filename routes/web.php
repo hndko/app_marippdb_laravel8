@@ -40,4 +40,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Graduation Result Route (for Students)
     Route::get('/graduation', [App\Http\Controllers\ResultController::class, 'index'])->name('graduation.index');
+
+    // Profile Routes
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });
