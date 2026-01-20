@@ -30,39 +30,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <form action="{{ route('students.index') }}" method="GET" class="mb-4">
-                    <div class="row g-3">
-                        <div class="col-xxl-4 col-sm-6">
-                            <div class="search-box">
-                                <input type="text" name="search" class="form-control search"
-                                    placeholder="Cari Nama / NISN / No. Daftar" value="{{ request('search') }}">
-                                <i class="ri-search-line search-icon"></i>
-                            </div>
-                        </div>
-                        <div class="col-xxl-3 col-sm-6">
-                            <div>
-                                <select name="status" class="form-control" data-choices data-choices-search-false>
-                                    <option value="">Semua Status</option>
-                                    <option value="pending" {{ request('status')=='pending' ? 'selected' : '' }}>Pending
-                                    </option>
-                                    <option value="verified" {{ request('status')=='verified' ? 'selected' : '' }}>
-                                        Verified</option>
-                                    <option value="accepted" {{ request('status')=='accepted' ? 'selected' : '' }}>
-                                        Diterima</option>
-                                    <option value="rejected" {{ request('status')=='rejected' ? 'selected' : '' }}>
-                                        Ditolak</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-sm-4">
-                            <div>
-                                <button type="submit" class="btn btn-secondary w-100">
-                                    <i class="ri-search-line me-1 align-bottom"></i> Filter
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+
 
                 <div class="table-responsive">
                     <table id="alternative-pagination"
