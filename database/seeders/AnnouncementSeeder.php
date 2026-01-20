@@ -43,13 +43,15 @@ class AnnouncementSeeder extends Seeder
         ];
 
         foreach ($announcements as $item) {
-            Announcement::create([
-                'title' => $item['title'],
-                'slug' => Str::slug($item['title']),
-                'content' => $item['content'],
-                'image' => $item['image'],
-                'is_active' => $item['is_active'],
-            ]);
+            Announcement::updateOrCreate(
+                ['slug' => Str::slug($item['title'])],
+                [
+                    'title' => $item['title'],
+                    'content' => $item['content'],
+                    'image' => $item['image'],
+                    'is_active' => $item['is_active'],
+                ]
+            );
         }
     }
 }

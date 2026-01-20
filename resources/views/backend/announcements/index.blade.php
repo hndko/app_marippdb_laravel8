@@ -35,8 +35,8 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                        style="width:100%">
+                    <table id="announcementTable"
+                        class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -73,44 +73,55 @@
                                 </td>
                                 <td>{{ $announcement->created_at->format('d M Y H:i') }}</td>
                                 <td>
-                                    <div class="dropdown d-inline-block">
-                                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="ri-more-fill align-middle"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a href="{{ route('announcements.edit', $announcement->id) }}"
-                                                    class="dropdown-item"><i
-                                                        class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                    Edit</a></li>
-                                            <li>
-                                                <form action="{{ route('announcements.destroy', $announcement->id) }}"
-                                                    method="POST" class="d-inline delete-form">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button" class="dropdown-item remove-item-btn">
-                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </li>
-                                        </ul>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('announcements.edit', $announcement->id) }}"
+                                            class="btn btn-warning btn-sm" title="Edit">
+                                            <i class="ri-pencil-fill align-bottom"></i>
+                                        </a>
+                                        <form action="{{ route('announcements.destroy', $announcement->id) }}"
+                                            method="POST" class="d-inline delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm remove-item-btn"
+                                                title="Hapus">
+                                                <i class="ri-delete-bin-fill align-bottom"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
                             @empty
-                            <tr>
-                                <td colspan="6" class="text-center">Belum ada pengumuman.</td>
-                            </tr>
+                            <!-- Empty state handled by DataTables usually, but keeping for structure -->
                             @endforelse
                         </tbody>
                     </table>
-                </div>
-                <div class="d-flex justify-content-end mt-3">
-                    {{ $announcements->links() }}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#announcementTable').DataTable({
+            pagingType: "full_numbers",
+            language: {
+                search: "Cari:",
+                lengthMenu: "Tampilkan _MENU_ data",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                infoFiltered: "(disaring dari _MAX_ total data)",
+                zeroRecords: "Tidak ada data yang cocok",
+                paginate: {
+                    first: "Awal",
+                    last: "Akhir",
+                    next: "Lanjut",
+                    previous: "Mundur"
+                }
+            }
+        });
+    });
+</script>
+@endsection
 @endsection
