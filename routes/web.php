@@ -173,6 +173,27 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [App\Http\Controllers\Backend\TestimonialController::class, 'destroy'])->name('destroy');
     });
 
+    // --- Team Routes (Admin Only) ---
+    Route::middleware(['role:admin'])->prefix('teams')->name('teams.')->group(function () {
+        // NOTE: Display list of teams
+        Route::get('/', [App\Http\Controllers\Backend\TeamController::class, 'index'])->name('index');
+
+        // NOTE: Show form to create new team
+        Route::get('/create', [App\Http\Controllers\Backend\TeamController::class, 'create'])->name('create');
+
+        // NOTE: Store new team
+        Route::post('/', [App\Http\Controllers\Backend\TeamController::class, 'store'])->name('store');
+
+        // NOTE: Show form to edit team
+        Route::get('/{id}/edit', [App\Http\Controllers\Backend\TeamController::class, 'edit'])->name('edit');
+
+        // NOTE: Update team
+        Route::put('/{id}', [App\Http\Controllers\Backend\TeamController::class, 'update'])->name('update');
+
+        // NOTE: Delete team
+        Route::delete('/{id}', [App\Http\Controllers\Backend\TeamController::class, 'destroy'])->name('destroy');
+    });
+
     // --- Profile Routes ---
     Route::prefix('profile')->name('profile.')->group(function () {
         // NOTE: Show profile edit form

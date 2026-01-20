@@ -58,6 +58,7 @@ class LandingController extends Controller
     public function team()
     {
         $data = $this->getCommonData();
+        $data['teams'] = \App\Models\Team::where('is_active', true)->latest()->get();
         return view('frontend.pages.team', $data);
     }
 

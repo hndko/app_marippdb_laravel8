@@ -207,6 +207,12 @@
                                 <i class="ri-discuss-line"></i> <span data-key="t-testimonials">Testimoni</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('teams.*') ? 'active' : '' }}"
+                                href="{{ route('teams.index') }}">
+                                <i class="ri-team-line"></i> <span data-key="t-teams">Tim Kami</span>
+                            </a>
+                        </li>
 
                         <!-- Pengaturan Sistem (Admin Only) -->
                         <li class="menu-title"><span data-key="t-system">Sistem</span></li>
