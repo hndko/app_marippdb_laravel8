@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.app-frontend')
 
 @section('title', 'Beranda - ' . (config('app.name')))
 

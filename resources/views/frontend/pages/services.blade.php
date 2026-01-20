@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.app-frontend')
 
 @section('title', 'Layanan - ' . (config('app.name')))
 
