@@ -1,64 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Mari PPDB - Sistem Penerimaan Peserta Didik Baru Online
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
-## About Laravel
+## 📖 Deskripsi Singkat
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Mari PPDB** adalah aplikasi web modern untuk memfasilitasi proses Penerimaan Peserta Didik Baru (PPDB) secara online. Dibangun menggunakan framework Laravel yang handal, aplikasi ini dirancang untuk memudahkan sekolah dalam mengelola pendaftaran siswa, pengumuman, dan komunikasi dengan calon wali murid, serta memberikan pengalaman pengguna yang seamless melalui antarmuka yang responsif dan interaktif.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Halaman Depan (Public)
 
-## Learning Laravel
+- **Landing Page Dinamis**: Halaman beranda yang menarik dengan Hero Section yang dapat dikonfigurasi.
+- **Layanan & Fitur**: Informasi lengkap mengenai fasilitas dan keunggulan sekolah.
+- **Testimoni & Tim**: Menampilkan ulasan wali murid dan profil tenaga pengajar.
+- **Hubungi Kami**: Formulir kontak interaktif dan integrasi Google Maps dinamis.
+- **Pengumuman**: Halaman khusus untuk informasi terbaru seputar PPDB.
+- **SEO Ready**: Pengaturan Meta Title, Description, Keyword, dan OG Image yang dinamis untuk optimasi mesin pencari.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Panel Admin (Backend)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Dashboard Informatif**: Ringkasan statistik pendaftaran dan pesan masuk.
+- **Manajemen Konten**: CRUD untuk Pengumuman, Layanan, Fitur, Testimoni, dan Tim.
+- **Data Siswa**: Pengelolaan data calon siswa yang terdaftar.
+- **Pesan Masuk**: Kotak masuk untuk pertanyaan yang dikirim melalui formulir kontak.
+- **Pengaturan Aplikasi**: Konfigurasi lengkap mulai dari identitas sekolah, jadwal PPDB, sosial media, hingga tampilan Hero dan SEO.
+- **DataTables**: Integrasi DataTables pada semua halaman indeks untuk pencarian dan filter data yang cepat.
 
-## Laravel Sponsors
+## 🛠 Teknologi yang Digunakan
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Backend**: [Laravel 12](https://laravel.com) (PHP Framework)
+- **Frontend**: Blade Templating, Bootstrap 5, Custom CSS
+- **Database**: MySQL
+- **Assets**:
+    - [Remix Icon](https://remixicon.com) untuk ikon antarmuka.
+    - [DataTables](https://datatables.net) untuk penyajian data tabel.
+    - [SweetAlert2](https://sweetalert2.github.io) untuk notifikasi interaktif.
 
-### Premium Partners
+## 📦 Instalasi
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Ikuti langkah-langkah berikut untuk menjalankan aplikasi di lingkungan lokal Anda:
 
-## Contributing
+1.  **Clone Repository**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    git clone https://github.com/username/mari-ppdb.git
+    cd mari-ppdb
+    ```
 
-## Code of Conduct
+2.  **Install Dependensi**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```bash
+    composer install
+    npm install && npm run build
+    ```
 
-## Security Vulnerabilities
+3.  **Konfigurasi Environment**
+    Salin file `.env.example` menjadi `.env` dan sesuaikan pengaturan database Anda.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    cp .env.example .env
+    ```
 
-## License
+4.  **Generate Key**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    php artisan key:generate
+    ```
+
+5.  **Migrasi & Seeding Database**
+    Jalankan migrasi dan seeder untuk membuat tabel dan data awal (termasuk akun admin default).
+
+    ```bash
+    php artisan migrate
+    php artisan db:seed
+    ```
+
+6.  **Jalankan Server**
+    ```bash
+    php artisan serve
+    ```
+    Akses aplikasi melalui browser di `http://localhost:8000`.
+
+## 🤝 Kontribusi & Laporan Bug
+
+Kami sangat menghargai kontribusi Anda untuk mengembangkan proyek ini menjadi lebih baik.
+
+### Melaporkan Bug
+
+Jika Anda menemukan bug atau kesalahan pada aplikasi, silakan buat **Issue** baru di repository ini. Mohon sertakan detail langkah-langkah untuk mereproduksi bug tersebut agar kami dapat segera memperbaikinya.
+
+### Request Fitur & Pull Request
+
+Punya ide fitur baru atau ingin memperbaiki kode? Silakan berkontribusi dengan cara:
+
+1.  Fork repository ini.
+2.  Buat branch fitur baru (`git checkout -b fitur-keren`).
+3.  Commit perubahan Anda (`git commit -m 'Menambahkan fitur keren'`).
+4.  Push ke branch tersebut (`git push origin fitur-keren`).
+5.  Buat **Pull Request** ke repository utama.
+
+## 📄 Lisensi
+
+Proyek ini bersifat open-source dan dilisensikan di bawah [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+<p align="center">
+    Dibuat dengan ❤️ oleh Tim Pengembang Mari PPDB
+</p>
