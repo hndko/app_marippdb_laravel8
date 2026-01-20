@@ -34,7 +34,7 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                    <table id="teamsTable" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                         style="width:100%">
                         <thead>
                             <tr>
@@ -93,4 +93,28 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#teamsTable').DataTable({
+            pagingType: "full_numbers",
+            language: {
+                search: "Cari:",
+                lengthMenu: "Tampilkan _MENU_ data",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                infoFiltered: "(disaring dari _MAX_ total data)",
+                zeroRecords: "Tidak ada data yang cocok",
+                paginate: {
+                    first: "Awal",
+                    last: "Akhir",
+                    next: "Lanjut",
+                    previous: "Mundur"
+                }
+            }
+        });
+    });
+</script>
 @endsection
